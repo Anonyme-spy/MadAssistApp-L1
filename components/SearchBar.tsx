@@ -1,7 +1,6 @@
 import { SearchBar } from "@rneui/themed";
 import React, { useState } from "react";
 import { StyleSheet, Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { Tab, Text, TabView } from '@rneui/themed';
 
 import { View } from "@/components/Themed";
 import { baseThemedStyle } from "@/constants/baseThemedStyle";

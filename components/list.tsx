@@ -1,11 +1,13 @@
 import React from 'react';
 import { Button, Icon, IconElement, List, ListItem, IconProps, Text } from '@ui-kitten/components';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet} from "react-native";
 import { TextProps } from '@ui-kitten/components';
+import handleEmergencyCall from "@/constants/Calling";
 
 interface IListItem {
   title: string;
   description: string;
+  tel: string
 }
 
 interface ListAppelProps {
@@ -13,10 +15,11 @@ interface ListAppelProps {
 }
 
 export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
-  // Default data if none provided
+  // Default data
   const listData = data || new Array(8).fill({
     title: 'Titre',
     description: 'Description',
+    tel: '123456789',
   });
 
   const PhoneIcon = (props: IconProps): IconElement => (
@@ -26,12 +29,13 @@ export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
     />
   );
 
-  const renderItemAccessory = (): React.ReactElement => (
+  const renderItemAccessory = (tel : string): React.ReactElement => (
     <Button
       size='medium'
       style={styles.button}
       accessoryLeft={PhoneIcon}
       appearance='filled'
+      onPress={() => {handleEmergencyCall(tel).then()}}
     >{(evaProps: TextProps) => <Text {...evaProps} style={styles.buttonText}>Appeler</Text>}
     </Button>
   );
@@ -57,7 +61,7 @@ export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
       title={() => renderTitle(item.title)}
       description={() => renderDescription(item.description)}
       accessoryLeft={renderItemIcon}
-      accessoryRight={renderItemAccessory}
+      accessoryRight={() => renderItemAccessory(item.tel)}
       style={styles.listItem}
       key={index}
     />

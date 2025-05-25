@@ -1,22 +1,40 @@
 import { Text, View } from "@/components/Themed";
-import { StyleSheet } from "react-native";
+import { StyleSheet , TouchableOpacity} from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 import { LinearGradient } from "expo-linear-gradient";
 import { Card } from "@rneui/themed";
 import React from "react";
 import { baseThemedStyle } from "@/constants/baseThemedStyle";
+import { router } from 'expo-router';
 
-export default function CardBox({ item }: { item: { id: string; title: string; icon: any; description: string; color1: string; color2: string } }) {
 
-  return (<Card
+export default function CardBox({ item }: { item: { id: string; title: string; icon: any; description: string; color1: string; color2: string; tabIndex: number } }) {
+  const handlePress = () => {
+    // Navigation vers la page de contact avec l'index de l'onglet
+    if (item.tabIndex !== undefined) {
+      router.push({
+        pathname: '/(tabs)/contact',
+        params: { tabIndex: item.tabIndex }
+      });
+    } else {
+      // Default navigation si tabIndex n'est pas défini
+      router.push('/(tabs)/contact');
+    }
+  };
+
+  return (
+
+    <Card
     containerStyle={styles.card}
     wrapperStyle={styles.cardWrapper}>
+      <TouchableOpacity activeOpacity={0.8} onPress={handlePress}>
     <LinearGradient
       colors={[item.color1, item.color2]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.cardGradient}
     >
+
       <View style={{
         ...baseThemedStyle, paddingTop: 15, paddingBottom: 0, gap: 0, marginBottom: 0
         // Additional styles for cardHeader
@@ -42,6 +60,7 @@ export default function CardBox({ item }: { item: { id: string; title: string; i
 
       }}>{item.description}</Text>
     </LinearGradient>
+    </TouchableOpacity>
   </Card>
 );
 }
@@ -69,20 +88,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  grid: {
-    width: '100%',
-    flex: 1,
-  },
-  gridRow: {
-    justifyContent: 'space-between',
-  },
-  gridContentStyle: {
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-    paddingBottom: 80,
-  },
+
   cardWrapper: {
     padding: 0,
     backgroundColor: 'transparent',
   },
+
 });

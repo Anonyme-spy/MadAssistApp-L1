@@ -1,26 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import { View, Text } from '@/components/Themed';
 import Search from "@/components/SearchBar";
 import { ListAppel } from "@/components/list";
 import { Tab, TabView } from '@rneui/themed';
-import {baseThemedStyle} from "@/constants/baseThemedStyle";
+import { baseThemedStyle } from "@/constants/baseThemedStyle";
+import { useLocalSearchParams } from 'expo-router';
 
 export default function TabTwoScreen() {
-  const [index, setIndex] = React.useState(0);
+  const { tabIndex } = useLocalSearchParams();
+  // Commence la valeur de l'index à partir du paramètre de navigation
+  const [index, setIndex] = React.useState(() => {
+    if (tabIndex) {
+      const parsedIndex = parseInt(tabIndex as string, 10);
+      return !isNaN(parsedIndex) ? parsedIndex : 0;
+    }
+    return 0;
+  });
+
+  // mise à jour de l'index si le paramètre de navigation change
+  useEffect(() => {
+    if (tabIndex) {
+      const parsedIndex = parseInt(tabIndex as string, 10);
+      if (!isNaN(parsedIndex)) {
+        setIndex(parsedIndex);
+      }
+    }
+  }, [tabIndex]);
 
   const contacts = [
     {
       title: "Service d'urgence médical",
       description: "Pour les urgences médicales et les ambulances",
+      tel: "112",
     },
     {
       title: "Police",
       description: "Pour les urgences policières et les interventions",
+      tel: "117",
     },
     {
       title: "Pompiers",
       description: "Pour les urgences incendie et de sauvetage",
+      tel: "118",
     }
   ];
 
@@ -83,6 +105,7 @@ export default function TabTwoScreen() {
 }
 
 const styles = StyleSheet.create({
+  // Styles remain unchanged
   safeArea: {
     flex: 1,
     width: '100%',
@@ -111,6 +134,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingVertical: 8,
     backgroundColor: 'transparent',
+    padding: 0
   },
   activeTabButton: {
     borderWidth: 1,
@@ -123,10 +147,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flexShrink: 1,
     flexWrap: 'nowrap',
-
+    paddingVertical: 0,
+    paddingHorizontal: 0,
   },
   activeTabTitle: {
     fontSize: 14,
+    padding: 0
   },
   tabViewContainer: {
     ...baseThemedStyle,

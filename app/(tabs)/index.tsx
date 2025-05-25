@@ -1,9 +1,10 @@
-import { StyleSheet, FlatList, Linking , Alert} from 'react-native';
+import { StyleSheet, FlatList} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from '@/components/Themed';
 import CardBox from "@/components/Card";
 import {Button} from "@rneui/themed";
 import { FontAwesome } from '@expo/vector-icons';
+import handleEmergencyCall from "@/constants/Calling";
 import React from "react";
 import { baseThemedStyle } from "@/constants/baseThemedStyle";// Define base styles that match the expected structure of Themed components
 
@@ -15,43 +16,19 @@ type ServiceItem = {
   description: string;
   color1: string;
   color2: string;
+  tabIndex: number;
 };
 
 export default function TabOneScreen() {
 
   const serviceData: ServiceItem[] = [
-    { id: '1', title: 'Santé', icon: 'phone', description: 'Contactez les services de santé rapidement.', color1: '#FD1D1D', color2: '#C72222' },
-    { id: '2', title: 'Sécurité', icon: 'shield', description: "Appelez les forces de l'ordre en un click.",color1:'#06063D', color2:'#090979' },
-    { id: '3', title: 'Incendie', icon: 'fire', description: ']Accédez rapidement aux pompiers.', color1: '#FCB045', color2: '#FD1D1D' },
-    { id: '4', title: 'Autres', icon: 'info', description: "Autres services d'urgence importants.", color1: '#22063D', color2: '#610979' },
+    { id: '1', title: 'Santé', icon: 'phone', description: 'Contactez les services de santé rapidement.', color1: '#FD1D1D', color2: '#C72222', tabIndex: 0 },
+    { id: '2', title: 'Sécurité', icon: 'shield', description: "Appelez les forces de l'ordre en un click.",color1:'#06063D', color2:'#090979', tabIndex:1},
+    { id: '3', title: 'Incendie', icon: 'fire', description: ']Accédez rapidement aux pompiers.', color1: '#FCB045', color2: '#FD1D1D', tabIndex: 2 },
+    { id: '4', title: 'Autres', icon: 'info', description: "Autres services d'urgence importants.", color1: '#22063D', color2: '#610979', tabIndex: 3 },
   ];
 
   // Pour le SOS emergency
-  const handleEmergencyCall = async () => {
-    const phoneNumber = '911';
-    const phoneUrl = `tel:${phoneNumber}`;
-
-    try {
-      const supported = await Linking.canOpenURL(phoneUrl);
-
-      if (supported) {
-        // Ouvrir l'application de téléphone avec le numéro d'urgence
-        await Linking.openURL(phoneUrl);
-      } else {
-        Alert.alert(
-          'Phone not supported',
-          'Your device cannot make phone calls',
-          [{ text: 'OK' }]
-        );
-      }
-    } catch (error) {
-      Alert.alert(
-        'Error',
-        'Could not initiate the emergency call',
-        [{ text: 'OK' }]
-      );
-    }
-  };
 
   return (
     /*Homme */
@@ -88,7 +65,7 @@ export default function TabOneScreen() {
         {/* utilise card en grid de 2 ligne*/}
         <FlatList
             data={serviceData}
-            renderItem={({ item }) => <CardBox item={item} />}
+            renderItem={({ item }) =>  <CardBox item={item} />}
             keyExtractor={item => item.id}
             numColumns={2}
             columnWrapperStyle={styles.gridRow}
@@ -105,7 +82,7 @@ export default function TabOneScreen() {
             end: { x: 1, y: 0.5 },
           }}
           buttonStyle={{ padding: 15, borderRadius: 30, width: '100%', alignSelf: 'center' }}
-          onPress={handleEmergencyCall}
+          onPress={() => handleEmergencyCall('911')}
         >
          <FontAwesome name={'phone'} size={24} color="white"/>   S O S
         </Button>
