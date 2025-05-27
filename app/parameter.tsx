@@ -1,84 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, useColorScheme as _useSystemColorScheme } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { Text, View } from '@/components/Themed';
-import { useColorScheme } from '@/components/useColorScheme';
-import React, { useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
 import { ButtonGroup } from '@rneui/themed';
 import { FontAwesome } from '@expo/vector-icons';
 import { baseThemedStyle } from "@/constants/baseThemedStyle";
+import { useThemeContext } from '@/components/ThemedContext';
+import { ThemePreference } from '@/components/utils/theme';
 
-const THEME_KEY = 'theme_preference';
+const themeIndexMap: Record<ThemePreference, number> = {
+  light: 0,
+  dark: 1,
+  auto: 2,
+};
+const indexThemeMap: Record<number, ThemePreference> = {
+  0: 'light',
+  1: 'dark',
+  2: 'auto',
+};
 
 export default function ParameterScreen() {
-  const colorScheme = useColorScheme();
-  const systemColorScheme = _useSystemColorScheme();
-  const [selectedThemeIndex, setSelectedThemeIndex] = useState(2); // Default to Auto
+  const { preference, setPreference, theme } = useThemeContext();
+  const [selectedThemeIndex, setSelectedThemeIndex] = useState(themeIndexMap[preference]);
 
-  // Load saved theme preference
   useEffect(() => {
-    const loadThemePreference = async () => {
-      try {
-        const savedTheme = await AsyncStorage.getItem(THEME_KEY);
-        if (savedTheme !== null) {
-          setSelectedThemeIndex(parseInt(savedTheme));
-        }
-      } catch (error) {
-        console.error('Failed to load theme preference:', error);
-      }
-    };
+    setSelectedThemeIndex(themeIndexMap[preference]);
+  }, [preference]);
 
-    loadThemePreference();
-  }, []);
-
-  // Apply theme function
-  const applyTheme = async (index: number) => {
-    let newTheme;
-    if (index === 0) newTheme = 'light';
-    else if (index === 1) newTheme = 'dark';
-    else newTheme = systemColorScheme || 'light';
-
-    // Force re-render with new theme
-    return newTheme;
-  };
-
-  // Save theme preference when changed
-  const updateTheme = async (index: number) => {
+  const handleThemeChange = (index: number) => {
     setSelectedThemeIndex(index);
-    try {
-      await AsyncStorage.setItem(THEME_KEY, index.toString());
-
-      // Apply the theme
-      const theme = await applyTheme(index);
-
-      // This is a global approach - you need to implement a proper theme context
-      // that will re-render components using the theme
-      if (index === 0) {
-        await AsyncStorage.setItem('colorScheme', 'light');
-      } else if (index === 1) {
-        await AsyncStorage.setItem('colorScheme', 'dark');
-      } else {
-        await AsyncStorage.setItem('colorScheme', systemColorScheme || 'light');
-      }
-
-      // Force reload the app to apply changes
-      // Note: In a production app, you'd use a context provider to avoid this
-      setTimeout(() => {
-        // This is a hack - ideally, you'd update a theme context
-        if (Platform.OS === 'web') {
-          window.location.reload();
-        }
-      }, 100);
-
-    } catch (error) {
-      console.error('Failed to save theme preference:', error);
-    }
+    setPreference(indexThemeMap[index]);
   };
 
   const buttons = [
-    { element: () => <FontAwesome name="sun-o" size={20} color={colorScheme === 'dark' ? 'white' : 'black'} /> },
-    { element: () => <FontAwesome name="moon-o" size={20} color={colorScheme === 'dark' ? 'white' : 'black'} /> },
-    { element: () => <FontAwesome name="magic" size={20} color={colorScheme === 'dark' ? 'white' : 'black'} /> }
+    { element: () => <FontAwesome name="sun-o" size={20} color={theme === 'dark' ? 'white' : 'black'} /> },
+    { element: () => <FontAwesome name="moon-o" size={20} color={theme === 'dark' ? 'white' : 'black'} /> },
+    { element: () => <FontAwesome name="magic" size={20} color={theme === 'dark' ? 'white' : 'black'} /> }
   ];
 
   return (
@@ -94,7 +51,7 @@ export default function ParameterScreen() {
         <ButtonGroup
           buttons={buttons}
           selectedIndex={selectedThemeIndex}
-          onPress={updateTheme}
+          onPress={handleThemeChange}
           containerStyle={styles.buttonGroupContainer}
           selectedButtonStyle={styles.selectedButton}
         />
