@@ -32,7 +32,7 @@ export default function TabLayout() {
           title: 'MadAssistant',
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link href="/parameter" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome

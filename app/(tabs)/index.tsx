@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList} from 'react-native';
+import { StyleSheet, FlatList, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from '@/components/Themed';
 import CardBox from "@/components/Card";
@@ -6,8 +6,7 @@ import {Button} from "@rneui/themed";
 import { FontAwesome } from '@expo/vector-icons';
 import handleEmergencyCall from "@/constants/Calling";
 import React from "react";
-import { baseThemedStyle } from "@/constants/baseThemedStyle";// Define base styles that match the expected structure of Themed components
-
+import { baseThemedStyle } from "@/constants/baseThemedStyle";
 
 type ServiceItem = {
   id: string;
@@ -22,22 +21,23 @@ type ServiceItem = {
 export default function TabOneScreen() {
 
   const serviceData: ServiceItem[] = [
-    { id: '1', title: 'Santé', icon: 'phone', description: 'Contactez les services de santé rapidement.', color1: '#FD1D1D', color2: '#C72222', tabIndex: 0 },
-    { id: '2', title: 'Sécurité', icon: 'shield', description: "Appelez les forces de l'ordre en un click.",color1:'#06063D', color2:'#090979', tabIndex:1},
-    { id: '3', title: 'Incendie', icon: 'fire', description: ']Accédez rapidement aux pompiers.', color1: '#FCB045', color2: '#FD1D1D', tabIndex: 2 },
-    { id: '4', title: 'Autres', icon: 'info', description: "Autres services d'urgence importants.", color1: '#22063D', color2: '#610979', tabIndex: 3 },
+    { id: '1', title: 'Santé', icon: 'phone', description: 'Contactez les services de santé rapidement.', color1: '#FD1D1D', color2: '#C72222', tabIndex: 1 },
+    { id: '2', title: 'Sécurité', icon: 'shield', description: "Appelez les forces de l'ordre en un click.",color1:'#06063D', color2:'#090979', tabIndex:2},
+    { id: '3', title: 'Incendie', icon: 'fire', description: 'Accédez rapidement aux pompiers.', color1: '#FCB045', color2: '#FD1D1D', tabIndex: 3 },
+    { id: '4', title: 'Autres', icon: 'info', description: "Autres services d'urgence importants.", color1: '#22063D', color2: '#610979', tabIndex: 0 },
   ];
 
-  // Pour le SOS emergency
-
   return (
-    /*Homme */
+    <ScrollView
+      contentContainerStyle={styles.scrollViewContent}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={{
         ...baseThemedStyle,
         flex: 1,
         justifyContent: 'space-evenly',
         width: '100%',
-
+        padding:0
       }}>
         <LinearGradient colors={['#334ec4', '#5ebaf2']}
                         start={{ x: 0, y: 0 }}
@@ -48,49 +48,54 @@ export default function TabOneScreen() {
             fontSize: 30,
             fontWeight: 'bold',
             textAlign: 'center',
+            padding: 0,
           }}>Accéder facilement aux Services d'urgence à Madagascar</Text>
 
           <Text
-              style={{
-                ...baseThemedStyle,
-                fontSize: 15,
-                textAlign: 'center',
-                marginHorizontal: 20,
-              }}
-              lightColor="rgba(255,255,255,0.8)"
-              darkColor="rgba(255,255,255,1)">
+            style={{
+              ...baseThemedStyle,
+              fontSize: 15,
+              textAlign: 'center',
+              marginHorizontal: 20,
+            }}
+            lightColor="rgba(255,255,255,0.8)"
+            darkColor="rgba(255,255,255,1)">
             Votre guide rapide pour les services d'urgence à Madagascar
           </Text>
         </LinearGradient>
-        {/* utilise card en grid de 2 ligne*/}
+
         <FlatList
-            data={serviceData}
-            renderItem={({ item }) =>  <CardBox item={item} />}
-            keyExtractor={item => item.id}
-            numColumns={2}
-            columnWrapperStyle={styles.gridRow}
-            style={styles.grid}
-            contentContainerStyle={styles.gridContentStyle}
-            scrollEnabled={false}
+          data={serviceData}
+          renderItem={({ item }) =>  <CardBox item={item} />}
+          keyExtractor={item => item.id}
+          numColumns={2}
+          columnWrapperStyle={styles.gridRow}
+          style={styles.grid}
+          contentContainerStyle={styles.gridContentStyle}
+          scrollEnabled={false} // Disable scrolling on the FlatList
         />
 
         <Button
-          ViewComponent={LinearGradient as any}// Don't forget this!
+          ViewComponent={LinearGradient as any}
           linearGradientProps={{
             colors: ["#FF9800", "#F44336"],
             start: { x: 0, y: 0.5 },
             end: { x: 1, y: 0.5 },
           }}
-          buttonStyle={{ padding: 15, borderRadius: 30, width: '100%', alignSelf: 'center' }}
+          buttonStyle={{ padding: 15, borderRadius: 30, width: '100%', alignSelf: 'center', marginBottom: 20 }}
           onPress={() => handleEmergencyCall('911')}
         >
-         <FontAwesome name={'phone'} size={24} color="white"/>   S O S
+          <FontAwesome name={'phone'} size={24} color="white"/>   S O S
         </Button>
       </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollViewContent: {
+    flexGrow: 1,
+  },
   hero: {
     height: 250,
     alignItems: 'center',
@@ -98,6 +103,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
+    padding: 0,
   },
   separator: {
     marginVertical: 10,
@@ -106,7 +112,6 @@ const styles = StyleSheet.create({
   },
   grid: {
     width: '100%',
-    flex: 1,
   },
   gridRow: {
     justifyContent: 'space-between',
@@ -114,6 +119,6 @@ const styles = StyleSheet.create({
   gridContentStyle: {
     paddingVertical: 0,
     paddingHorizontal: 10,
-    paddingBottom: 80,
+    paddingBottom: 20,
   },
 });

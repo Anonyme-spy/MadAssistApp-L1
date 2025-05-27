@@ -21,8 +21,9 @@ type ThemeProps = {
 
   }
 };
-
+// @ts-ignore
 export type TextProps = ThemeProps & DefaultText["props"];
+// @ts-ignore
 export type ViewProps = ThemeProps & DefaultView["props"];
 
 export function useThemeColor(

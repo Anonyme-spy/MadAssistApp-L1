@@ -4,6 +4,6 @@ export const baseThemedStyle = {
   alignItems: 'center' as const,
   marginBottom: 10,
   gap: 10,
-  marginTop: 5,
-  paddingTop: 10,
+  marginTop: 0,
+  paddingTop: 0,
 };
