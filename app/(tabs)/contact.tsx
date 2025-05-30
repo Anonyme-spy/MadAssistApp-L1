@@ -32,17 +32,17 @@ export default function TabTwoScreen() {
     {
       title: "Service d'urgence médical",
       description: "Pour les urgences médicales et les ambulances",
-      tel: "112",
+      tel: "#",
     },
     {
       title: "Police",
       description: "Pour les urgences policières et les interventions",
-      tel: "117",
+      tel: "#",
     },
     {
       title: "Pompiers",
       description: "Pour les urgences incendie et de sauvetage",
-      tel: "118",
+      tel: "#",
     }
   ];
 
