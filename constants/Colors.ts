@@ -5,13 +5,13 @@ export default {
   light: {
     text: '#000',
     tint: tintColorLight,
-    tabIconDefault: '#ccc',
+    tabIconDefault: ' #8e8e93 ',
     tabIconSelected: tintColorLight,
   },
   dark: {
     text: '#fff',
     tint: tintColorDark,
-    tabIconDefault: '#ccc',
+    tabIconDefault: ' #8e8e93 ',
     tabIconSelected: tintColorDark,
   },
 };

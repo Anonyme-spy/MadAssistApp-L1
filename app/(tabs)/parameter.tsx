@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { Platform, StyleSheet } from 'react-native';
 import { Text, View } from '@/components/Themed';
-import React, { useEffect, useState } from 'react';
 import { ButtonGroup } from '@rneui/themed';
 import { FontAwesome } from '@expo/vector-icons';
 import { baseThemedStyle } from "@/constants/baseThemedStyle";
 import { useThemeContext } from '@/components/ThemedContext';
 import { ThemePreference } from '@/components/utils/theme';
+import React, { useEffect, useState, useMemo } from 'react';
 
 const themeIndexMap: Record<ThemePreference, number> = {
   light: 0,
@@ -25,6 +25,7 @@ export default function ParameterScreen() {
 
   useEffect(() => {
     setSelectedThemeIndex(themeIndexMap[preference]);
+
   }, [preference]);
 
   const handleThemeChange = (index: number) => {
@@ -32,48 +33,75 @@ export default function ParameterScreen() {
     setPreference(indexThemeMap[index]);
   };
 
-  const buttons = [
+
+
+// Dans le composant, remplacez la définition de buttons par :
+  const buttons = useMemo(() => [
     { element: () => <FontAwesome name="sun-o" size={20} color={theme === 'dark' ? 'white' : 'black'} /> },
     { element: () => <FontAwesome name="moon-o" size={20} color={theme === 'dark' ? 'white' : 'black'} /> },
     { element: () => <FontAwesome name="magic" size={20} color={theme === 'dark' ? 'white' : 'black'} /> }
-  ];
+  ], [theme]);
 
   return (
-    <View style={{...baseThemedStyle, ...styles.container}}>
-      <Text style={{...baseThemedStyle, ...styles.title}}>Paramètres</Text>
+      <View style={{...baseThemedStyle, ...styles.container}}>
+        <Text style={{
+          ...baseThemedStyle,
+          ...styles.title,
+          color: theme === 'dark' ? 'white' : 'black'
+        }}>Paramètres</Text>
 
-      <View style={{...baseThemedStyle, ...styles.section}}>
-        <Text style={{...baseThemedStyle, ...styles.sectionTitle}}>Thème</Text>
-        <Text style={{...baseThemedStyle, ...styles.description}}>
-          Choisissez votre mode d'affichage préféré
-        </Text>
+        <View style={{...baseThemedStyle, ...styles.section}}>
+          <Text style={{
+            ...baseThemedStyle,
+            ...styles.sectionTitle,
+            color: theme === 'dark' ? 'white' : 'black'
+          }}>Thème</Text>
+          <Text style={{
+            ...baseThemedStyle,
+            ...styles.description,
+            color: theme === 'dark' ? 'white' : 'black'
+          }}>
+            Choisissez votre mode d'affichage préféré
+          </Text>
 
-        <ButtonGroup
-          buttons={buttons}
-          selectedIndex={selectedThemeIndex}
-          onPress={handleThemeChange}
-          containerStyle={styles.buttonGroupContainer}
-          selectedButtonStyle={styles.selectedButton}
-        />
+          <ButtonGroup
+              buttons={buttons}
+              selectedIndex={selectedThemeIndex}
+              onPress={handleThemeChange}
+              containerStyle={styles.buttonGroupContainer}
+              selectedButtonStyle={styles.selectedButton}
+          />
+
+          <View style={{
+            ...baseThemedStyle,
+            ...styles.themeLabels,
+            padding: 0
+          }}>
+            <Text style={{
+              ...baseThemedStyle,
+              ...styles.themeLabel,
+              color: theme === 'dark' ? 'white' : 'black'
+            }}>Clair</Text>
+            <Text style={{
+              ...baseThemedStyle,
+              ...styles.themeLabel,
+              color: theme === 'dark' ? 'white' : 'black'
+            }}>Sombre</Text>
+            <Text style={{
+              ...baseThemedStyle,
+              ...styles.themeLabel,
+              color: theme === 'dark' ? 'white' : 'black'
+            }}>Auto</Text>
+          </View>
+        </View>
 
         <View style={{
           ...baseThemedStyle,
-          ...styles.themeLabels,
-          padding: 0
-        }}>
-          <Text style={{...baseThemedStyle,...styles.themeLabel }}>Clair</Text>
-          <Text style={{...baseThemedStyle,...styles.themeLabel }}>Sombre</Text>
-          <Text style={{...baseThemedStyle,...styles.themeLabel }}>Auto</Text>
-        </View>
+          ...styles.separator
+        }} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
+        <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
       </View>
-
-      <View style={{
-        ...baseThemedStyle,
-        ...styles.separator
-      }} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
-    </View>
   );
 }
 
@@ -110,6 +138,7 @@ const styles = StyleSheet.create({
   buttonGroupContainer: {
     borderRadius: 12,
     marginBottom: 5,
+    backgroundColor: 'transparent',
   },
   selectedButton: {
     backgroundColor: '#334ec4',

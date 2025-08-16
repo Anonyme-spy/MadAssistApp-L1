@@ -1,0 +1,46 @@
+{
+  "emergencyContacts": [
+    {
+      "id": 1,
+      "title": "Service d'urgence médical",
+      "description": "Pour les urgences médicales et les ambulances",
+      "tel": "0387074704",
+      "category": "santé"
+    },
+    {
+      "id": 2,
+      "title": "Police",
+      "description": "Pour les urgences policières et les interventions",
+      "tel": "0376213686",
+      "category": "sécurité"
+    },
+    {
+      "id": 3,
+      "title": "Pompiers",
+      "description": "Pour les urgences incendie et de sauvetage",
+      "tel": "0381524257",
+      "category": "incendie"
+    },
+    {
+      "id": 4,
+      "title": "Centre anti-poison",
+      "description": "Pour les intoxications et les urgences liées aux poisons",
+      "tel": "0387074704",
+      "category": "santé"
+    },
+    {
+      "id": 5,
+      "title": "Urgences psychiatriques",
+      "description": "Pour les crises psychiatriques et les urgences mentales",
+      "tel": "0387074704",
+      "category": "santé"
+    },
+    {
+      "id": 6,
+      "title": "Centre de crise sociale",
+      "description": "Pour les crises sociales et les situations d'urgence sociale",
+      "tel": "0387074704",
+      "category": "social"
+    }
+  ]
+}

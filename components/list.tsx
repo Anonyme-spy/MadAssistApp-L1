@@ -4,24 +4,28 @@ import { StyleSheet} from "react-native";
 import { TextProps } from '@ui-kitten/components';
 import handleEmergencyCall from "@/constants/Calling";
 
+// Interface définissant la structure d'un élément de la liste de contacts
 interface IListItem {
-  title: string;
-  description: string;
-  tel: string
+  title: string;       // Nom du contact ou du service
+  description: string; // Description ou informations supplémentaires
+  tel: string          // Numéro de téléphone à appeler
 }
 
+// Props du composant ListAppel avec données optionnelles
 interface ListAppelProps {
-  data?: IListItem[];
+  data?: IListItem[];  // Tableau d'éléments de contact (optionnel)
 }
 
+// Composant principal pour afficher une liste de contacts d'urgence
 export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
-  // Default data
+  // Utilise les données fournies ou des données par défaut si non spécifiées
   const listData = data || new Array(8).fill({
     title: 'Titre',
     description: 'Description',
     tel: '123456789',
   });
 
+  // Composant d'icône de téléphone pour le bouton d'appel
   const PhoneIcon = (props: IconProps): IconElement => (
     <Icon
       {...props}
@@ -29,6 +33,7 @@ export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
     />
   );
 
+  // Rendu du bouton d'appel pour chaque élément de la liste
   const renderItemAccessory = (tel : string): React.ReactElement => (
     <Button
       size='medium'
@@ -40,6 +45,7 @@ export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
     </Button>
   );
 
+  // Icône de personne affichée à gauche de chaque élément
   const renderItemIcon = (props: IconProps): IconElement => (
     <Icon
       {...props}
@@ -48,14 +54,17 @@ export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
     />
   );
 
+  // Rendu du titre de chaque contact avec style personnalisé
   const renderTitle = (title: string): React.ReactElement => (
     <Text style={styles.title}>{title}</Text>
   );
 
+  // Rendu de la description de chaque contact avec style personnalisé
   const renderDescription = (description: string): React.ReactElement => (
     <Text style={styles.description}>{description}</Text>
   );
 
+  // Configuration du rendu pour chaque élément de la liste
   const renderItem = ({ item, index }: { item: IListItem; index: number }): React.ReactElement => (
     <ListItem
       title={() => renderTitle(item.title)}
@@ -67,6 +76,7 @@ export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
     />
   );
 
+  // Retourne le composant List avec tous les éléments configurés
   return (
     <List
       style={styles.container}
@@ -77,7 +87,9 @@ export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
   );
 };
 
+// Styles pour les différents éléments du composant
 const styles = StyleSheet.create({
+  // Style du conteneur principal de la liste
   container: {
     flex: 1,
     width: '100%',
@@ -85,9 +97,11 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     backgroundColor: 'transparent',
   },
+  // Style du conteneur de contenu pour la liste
   contentContainer: {
     paddingBottom: 20,
   },
+  // Style de chaque élément individuel de la liste
   listItem: {
     marginVertical: 8,
     borderRadius: 12,
@@ -99,27 +113,32 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
+  // Style de l'icône de personne
   icon: {
     width: 40,
     height: 40,
   },
+  // Style du titre de chaque contact
   title: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 15,
   },
+  // Style du texte de description
   description: {
     fontSize: 11,
     color: '#8F9BB3',
     lineHeight: 20,
   },
+  // Style du bouton d'appel
   button: {
     borderRadius: 30,
     padding: 10,
     marginLeft: 10,
   },
+  // Style du texte dans le bouton d'appel
   buttonText: {
-    marginLeft: -4, // Reduces the gap between icon and text
+    marginLeft: -4, // Réduit l'espace entre l'icône et le texte
     fontWeight: 'bold',
     color: '#fff',
   },
