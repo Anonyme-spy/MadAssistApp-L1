@@ -2,45 +2,106 @@
   "emergencyContacts": [
     {
       "id": 1,
-      "title": "Emergency Medical Service",
-      "description": "For medical emergencies and ambulances",
-      "tel": "0387074704",
-      "category": "health"
+      "title": "Fire Department",
+      "description": "For fire emergencies and rescue operations",
+      "tel": "118",
+      "alternativeTel": "22250018",
+      "category": "fire"
     },
     {
       "id": 2,
-      "title": "Police",
+      "title": "National Police",
       "description": "For police emergencies and interventions",
-      "tel": "0376213686",
+      "tel": "117",
+      "alternativeTel": "22220017",
       "category": "security"
     },
     {
       "id": 3,
-      "title": "Fire Department",
-      "description": "For fire emergencies and rescue operations",
-      "tel": "0381524257",
-      "category": "fire"
+      "title": "National Gendarmerie",
+      "description": "For gendarmerie interventions",
+      "tel": "119",
+      "category": "security"
     },
     {
       "id": 4,
-      "title": "Poison Control Center",
-      "description": "For poisoning and poison-related emergencies",
-      "tel": "0387074704",
-      "category": "health"
+      "title": "MAF Madagascar - Medical Evacuation",
+      "description": "Emergency medical evacuation",
+      "tel": "0321165605",
+      "emergencyTel": "0325718395",
+      "category": "health",
+      "availability": "24/7"
     },
     {
       "id": 5,
-      "title": "Psychiatric Emergency",
-      "description": "For psychiatric crises and mental health emergencies",
-      "tel": "0387074704",
-      "category": "health"
+      "title": "Espace Medical Ambodivona",
+      "description": "24/7 medical emergencies",
+      "tel": "0320208816",
+      "alternativeTel": "0202262566",
+      "category": "health",
+      "availability": "24/7"
     },
     {
       "id": 6,
-      "title": "Social Crisis Center",
-      "description": "For social crises and social emergency situations",
-      "tel": "0387074704",
-      "category": "social"
+      "title": "MM Clinic Ampasanimalo",
+      "description": "24/7 medical emergencies",
+      "tel": "022235555",
+      "alternativeTel": "0320223555",
+      "thirdTel": "0320489722",
+      "category": "health",
+      "availability": "24/7"
+    },
+    {
+      "id": 7,
+      "title": "CHU HJRA Ampefiloha",
+      "description": "University Hospital - Emergency Department",
+      "tel": "0331189058",
+      "category": "health",
+      "availability": "24/7"
+    },
+    {
+      "id": 8,
+      "title": "French Consulate General",
+      "description": "Consular emergencies outside office hours",
+      "tel": "0321211010",
+      "alternativeTel": "0341211010",
+      "category": "consular",
+      "availability": "After hours"
+    },
+    {
+      "id": 9,
+      "title": "Central Police Station Antananarivo",
+      "description": "Capital city central police",
+      "tel": "0202022735",
+      "alternativeTel": "0202022736",
+      "category": "security",
+      "location": "Antananarivo"
+    },
+    {
+      "id": 10,
+      "title": "Police Diego-Suarez",
+      "description": "Diego-Suarez police",
+      "tel": "0340599859",
+      "category": "security",
+      "location": "Diego-Suarez"
+    },
+    {
+      "id": 11,
+      "title": "Police Majunga",
+      "description": "Majunga police",
+      "tel": "0206222932",
+      "alternativeTel": "0340599866",
+      "category": "security",
+      "location": "Majunga"
+    },
+    {
+      "id": 12,
+      "title": "Police Tulear",
+      "description": "Tulear (Toliara) police",
+      "tel": "0340599878",
+      "alternativeTel": "0340200911",
+      "category": "security",
+      "location": "Tulear"
     }
   ]
 }

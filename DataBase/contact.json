@@ -2,45 +2,106 @@
   "emergencyContacts": [
     {
       "id": 1,
-      "title": "Service d'urgence médical",
-      "description": "Pour les urgences médicales et les ambulances",
-      "tel": "0387074704",
-      "category": "health"
+      "title": "Pompiers",
+      "description": "Pour les urgences incendie et de sauvetage",
+      "tel": "118",
+      "alternativeTel": "22250018",
+      "category": "fire"
     },
     {
       "id": 2,
-      "title": "Police",
+      "title": "Police Nationale",
       "description": "Pour les urgences policières et les interventions",
-      "tel": "0376213686",
+      "tel": "117",
+      "alternativeTel": "22220017",
       "category": "security"
     },
     {
       "id": 3,
-      "title": "Pompiers",
-      "description": "Pour les urgences incendie et de sauvetage",
-      "tel": "0381524257",
-      "category": "fire"
+      "title": "Gendarmerie Nationale",
+      "description": "Pour les interventions de la gendarmerie",
+      "tel": "119",
+      "category": "security"
     },
     {
       "id": 4,
-      "title": "Centre anti-poison",
-      "description": "Pour les intoxications et les urgences liées aux poisons",
-      "tel": "0387074704",
-      "category": "health"
+      "title": "MAF Madagascar - Évacuation médicale",
+      "description": "Évacuation médicale d'urgence",
+      "tel": "0321165605",
+      "emergencyTel": "0325718395",
+      "category": "health",
+      "availability": "24h/24"
     },
     {
       "id": 5,
-      "title": "Urgences psychiatriques",
-      "description": "Pour les crises psychiatriques et les urgences mentales",
-      "tel": "0387074704",
-      "category": "health"
+      "title": "Espace médical Ambodivona",
+      "description": "Urgences médicales 24h/24",
+      "tel": "0320208816",
+      "alternativeTel": "0202262566",
+      "category": "health",
+      "availability": "24h/24"
     },
     {
       "id": 6,
-      "title": "Centre de crise sociale",
-      "description": "Pour les crises sociales et les situations d'urgence sociale",
-      "tel": "0387074704",
-      "category": "social"
+      "title": "Clinique MM Ampasanimalo",
+      "description": "Urgences médicales 24h/24",
+      "tel": "022235555",
+      "alternativeTel": "0320223555",
+      "thirdTel": "0320489722",
+      "category": "health",
+      "availability": "24h/24"
+    },
+    {
+      "id": 7,
+      "title": "CHU HJRA Ampefiloha",
+      "description": "Centre hospitalier universitaire - Urgences",
+      "tel": "0331189058",
+      "category": "health",
+      "availability": "24h/24"
+    },
+    {
+      "id": 8,
+      "title": "Consulat Général de France",
+      "description": "Urgences consulaires hors horaires de bureau",
+      "tel": "0321211010",
+      "alternativeTel": "0341211010",
+      "category": "consular",
+      "availability": "Hors horaires de bureau"
+    },
+    {
+      "id": 9,
+      "title": "Commissariat Central Antananarivo",
+      "description": "Police centrale de la capitale",
+      "tel": "0202022735",
+      "alternativeTel": "0202022736",
+      "category": "security",
+      "location": "Antananarivo"
+    },
+    {
+      "id": 10,
+      "title": "Police Diégo-Suarez",
+      "description": "Police de Diégo-Suarez",
+      "tel": "0340599859",
+      "category": "security",
+      "location": "Diégo-Suarez"
+    },
+    {
+      "id": 11,
+      "title": "Police Majunga",
+      "description": "Police de Majunga",
+      "tel": "0206222932",
+      "alternativeTel": "0340599866",
+      "category": "security",
+      "location": "Majunga"
+    },
+    {
+      "id": 12,
+      "title": "Police Tuléar",
+      "description": "Police de Tuléar (Toliara)",
+      "tel": "0340599878",
+      "alternativeTel": "0340200911",
+      "category": "security",
+      "location": "Tuléar"
     }
   ]
 }

@@ -2,7 +2,8 @@
   "tabs": {
     "home": "MadAssistant",
     "contacts": "Contacts",
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "firstAid": "Premiers secours"
   },
   "settings": {
     "title": "Paramètres",
@@ -89,5 +90,18 @@
       "multilingual": "Interface multilingue"
     },
     "version": "Version"
+  },
+  "firstAid": {
+    "title": "Premiers secours",
+    "subtitle": "Guide de premiers secours",
+    "searchPlaceholder": "Rechercher des premiers secours...",
+    "categories": {
+      "all": "Tout",
+      "respiratory": "Respiratoire",
+      "cardiac": "Cardiaque",
+      "emergency": "Urgences"
+    },
+    "callEmergency": "Appeler les secours",
+    "noResults": "Aucune procédure trouvée"
   }
 }

@@ -8,9 +8,10 @@ import { useTranslation } from 'react-i18next';
 // Props pour le composant Search
 interface SearchProps {
   onSearchChange?: (searchText: string) => void;
+  Placeholder?: string; // Texte de l'espace réservé pour la barre de recherche
 }
 
-export default function Search({ onSearchChange }: SearchProps) {
+export default function Search({ onSearchChange, Placeholder }: SearchProps) {
   const { t } = useTranslation();
   const [search, setSearch] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -41,7 +42,7 @@ export default function Search({ onSearchChange }: SearchProps) {
         gap: 0,
       }}>
         <SearchBar
-          placeholder={t('contacts.searchPlaceholder')}
+          placeholder={Placeholder}
           onChangeText={updateSearch}
           value={search}
           platform={Platform.OS === 'ios' ? 'ios' : 'android'}

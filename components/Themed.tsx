@@ -12,12 +12,12 @@ type ThemeProps = {
   lightColor?: string,
   darkColor?: string,
   style?: {
-    flexDirection: string;
-    alignItems: string;
-    marginBottom: number;
-    gap: number;
-    marginTop: number;
-    paddingTop: number;
+    flexDirection?: string;
+    alignItems?: string;
+    marginBottom?: number;
+    gap?: number;
+    marginTop?: number;
+    paddingTop?: number;
 
   }
 };

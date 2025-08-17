@@ -36,8 +36,10 @@ export default function TabLayout() {
       {/* Onglet des contacts d'urgence */}
       <Tabs.Screen
         name="contact"
+
         options={{
           title: t('tabs.contacts'),
+          headerTitleAlign: 'center',
           // Icône de téléphone pour l'onglet des contacts
           tabBarIcon: ({ color }) => <TabBarIcon name="phone" color={color} />,
         }}
@@ -62,10 +64,20 @@ export default function TabLayout() {
           )
         }}
       />
+      <Tabs.Screen
+        name="FirstAid"
+        options={{
+          title: t('tabs.firstAid'),
+          headerTitleAlign: 'center',
+          // Icône de trousse de secours pour l'onglet des premiers secours
+          tabBarIcon: ({ color }) => <FontAwesome name="heartbeat" size={22} color={color} />,
+        }}
+      />
         <Tabs.Screen
             name="parameter"
             options={{
               title: t('tabs.settings'),
+              headerTitleAlign: 'center',
               // Icône d'engrenage pour l'onglet des paramètres
               tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
             }}

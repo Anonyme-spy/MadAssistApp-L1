@@ -2,7 +2,8 @@
   "tabs": {
     "home": "MadAssistant",
     "contacts": "Contacts",
-    "settings": "Settings"
+    "settings": "Settings",
+    "firstAid": "First Aid"
   },
 
   "settings": {
@@ -92,5 +93,18 @@
       "multilingual": "Multilingual interface"
     },
     "version": "Version"
+  },
+  "firstAid": {
+    "title": "First Aid",
+    "subtitle": "Essential emergency procedures",
+    "searchPlaceholder": "Search first aid tips...",
+    "categories": {
+      "all": "All",
+      "respiratory": "Respiratory",
+      "cardiac": "Cardiac",
+      "emergency": "Emergency"
+    },
+    "callEmergency": "Call Emergency",
+    "noResults": "No procedures found"
   }
 }

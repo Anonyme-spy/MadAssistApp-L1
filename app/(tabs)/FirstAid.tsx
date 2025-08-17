@@ -1,63 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, SafeAreaView, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, SafeAreaView, View, Pressable } from 'react-native';
 import { Text } from '@/components/Themed';
 import Search from "@/components/SearchBar";
-import { ListAppel } from "@/components/list";
-import { Tab, TabView } from '@rneui/themed';
-import { baseThemedStyle } from "@/constants/baseThemedStyle";
-import { useLocalSearchParams } from 'expo-router';
-import contactsDataFr from "@/DataBase/contact.json";
-import contactsDataEn from "@/DataBase/contact-en.json";
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { TouchableWithoutFeedback, Pressable } from 'react-native';
+import { TabView } from '@rneui/themed';
+import { useThemeContext } from '@/components/ThemedContext';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/components/LanguageContext';
-import { useThemeContext } from '@/components/ThemedContext';
+import { EmergencyCard } from '@/components/EmergencyCard';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Dimensions, ImageBackground } from 'react-native';
 
-export default function TabTwoScreen() {
+const { height } = Dimensions.get('window');
+
+export default function FirstAidScreen() {
+  const { theme } = useThemeContext();
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const { theme } = useThemeContext();
-  const { tabIndex } = useLocalSearchParams();
   const [searchText, setSearchText] = useState('');
-
-  const [index, setIndex] = React.useState(() => {
-    if (tabIndex) {
-      const parsedIndex = parseInt(tabIndex as string, 10);
-      return !isNaN(parsedIndex) ? parsedIndex : 0;
-    }
-    return 0;
-  });
-
-  useEffect(() => {
-    if (tabIndex) {
-      const parsedIndex = parseInt(tabIndex as string, 10);
-      if (!isNaN(parsedIndex)) {
-        setIndex(parsedIndex);
-      }
-    }
-  }, [tabIndex]);
-
-  const contacts = language === 'fr' ? contactsDataFr.emergencyContacts : contactsDataEn.emergencyContacts;
-
-  // Debug pour vérifier les données
-  console.log('Total contacts:', contacts.length);
-  console.log('First contact:', contacts[0]);
-
-  const getFilteredContacts = (category: string) => {
-    if (category === 'all') return contacts;
-
-    const categoryMap: { [key: string]: string } = {
-      'health': 'health',
-      'security': 'security',
-      'fire': 'fire',
-    };
-
-    const jsonCategory = categoryMap[category];
-    const filtered = contacts.filter(contact => contact.category === jsonCategory);
-    console.log(`${category} contacts:`, filtered.length);
-    return filtered;
-  };
+  const [index, setIndex] = useState(0);
 
   const handleSearchChange = (text: string) => {
     setSearchText(text);
@@ -99,55 +60,85 @@ export default function TabTwoScreen() {
         styles.safeArea,
         { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
       ]}>
-        <Search onSearchChange={handleSearchChange} Placeholder={t('contacts.searchPlaceholder')} />
+        {/* Hero Section */}
+        <View style={styles.heroSection}>
+          <ImageBackground
+              source={require('@/assets/images/FirstAidHero.jpg')}
+              style={styles.heroBackground}
+              resizeMode="cover"
+          >
+            <LinearGradient
+                colors={['transparent', 'rgba(0,0,0,0.3)', 'rgba(0,0,0,0.7)']}
+                style={styles.overlay}
+            />
+            <View style={styles.heroContent}>
+              <View style={styles.textContainer}>
+                <Text style={styles.heroTitle}>
+                  {t('firstAid.title')}
+                </Text>
+                <Text style={styles.heroSubtitle}>
+                  {t('firstAid.subtitle')}
+                </Text>
+              </View>
+            </View>
+          </ImageBackground>
+        </View>
 
+        {/* Search Bar */}
+        <Search
+            onSearchChange={handleSearchChange}
+            Placeholder={t('firstAid.searchPlaceholder')}
+        />
+
+        {/* Tabs */}
         <View style={[
           styles.tabContainer,
           { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
         ]}>
           <View style={styles.customTabBar}>
             <CustomTabItem
-                title={t('contacts.categories.all')}
+                title={language === 'fr' ? 'Tout' : 'All'}
                 isActive={index === 0}
                 onPress={() => setIndex(0)}
             />
             <CustomTabItem
-                title={t('contacts.categories.health')}
+                title={language === 'fr' ? 'Respiratoire' : 'Respiratory'}
                 isActive={index === 1}
                 onPress={() => setIndex(1)}
             />
             <CustomTabItem
-                title={t('contacts.categories.security')}
+                title={language === 'fr' ? 'Cardiaque' : 'Cardiac'}
                 isActive={index === 2}
                 onPress={() => setIndex(2)}
             />
             <CustomTabItem
-                title={t('contacts.categories.fire')}
+                title={language === 'fr' ? 'Urgences' : 'Emergency'}
                 isActive={index === 3}
                 onPress={() => setIndex(3)}
             />
           </View>
         </View>
 
+        {/* Tab Content */}
         <View style={[
           styles.tabViewContainer,
           { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
         ]}>
           <TabView value={index} onChange={setIndex} animationType="spring">
             <TabView.Item style={styles.tabViewItem}>
-              <ListAppel data={getFilteredContacts('all')} searchText={searchText} />
+              <EmergencyCard category="all" searchText={searchText} />
             </TabView.Item>
 
             <TabView.Item style={styles.tabViewItem}>
-              <ListAppel data={getFilteredContacts('health')} searchText={searchText} />
+              <EmergencyCard category="Respiratory" searchText={searchText} />
             </TabView.Item>
 
             <TabView.Item style={styles.tabViewItem}>
-              <ListAppel data={getFilteredContacts('security')} searchText={searchText} />
+              <EmergencyCard category="Cardiac" searchText={searchText} />
             </TabView.Item>
 
             <TabView.Item style={styles.tabViewItem}>
-              <ListAppel data={getFilteredContacts('fire')} searchText={searchText} />
+              <EmergencyCard category="Emergency" searchText={searchText} />
             </TabView.Item>
           </TabView>
         </View>
@@ -159,6 +150,49 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
+  heroSection: {
+    height: height * 0.2,
+    width: '100%',
+  },
+  heroBackground: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  heroContent: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    paddingHorizontal: 24,
+    paddingBottom: 16,
+  },
+  textContainer: {
+    backgroundColor: 'transparent',
+  },
+  heroTitle: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#FFFFFF',
+    marginBottom: 4,
+    textShadowColor: 'rgba(0,0,0,0.5)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
+  },
+  heroSubtitle: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#FFFFFF',
+    opacity: 0.9,
+    textShadowColor: 'rgba(0,0,0,0.5)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  },
   tabContainer: {
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -169,15 +203,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   customTabButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 16,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     borderRadius: 20,
     borderWidth: 1,
     minWidth: wp('20%'),
     alignItems: 'center',
   },
   customTabTitle: {
-    fontSize: 12,
+    fontSize: 11,
     textAlign: 'center',
   },
   tabViewContainer: {
