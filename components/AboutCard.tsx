@@ -110,7 +110,7 @@ export const AboutCard = (): React.ReactElement => {
           styles.version,
           { color: theme === 'dark' ? '#666' : '#999' }
         ]}>
-          {t('about.version') || 'Version'} 1.0.0
+          {t('about.version') || 'Version'} 0.2.0
         </Text>
       </View>
     </Card>
