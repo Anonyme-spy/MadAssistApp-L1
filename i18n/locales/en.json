@@ -1,18 +1,25 @@
 {
   "tabs": {
-    "home": "MadAssistant of ISPM",
+    "home": "MadAssistant",
     "contacts": "Contacts",
     "settings": "Settings"
   },
+
   "settings": {
     "title": "Settings",
+    "configuration": "Configuration",
     "theme": "Theme",
     "themeDescription": "Choose your preferred display mode",
     "language": "Language",
     "languageDescription": "Select your preferred language",
     "light": "Light",
     "dark": "Dark",
-    "auto": "Auto"
+    "auto": "Auto",
+    "french": "French",
+    "english": "English",
+    "legal": "Legal Information",
+    "termsTitle": "Terms of Use",
+    "termsDescription": "Legal notice and terms"
   },
   "home": {
     "heroTitle": "Easy access to Emergency Services in Madagascar",

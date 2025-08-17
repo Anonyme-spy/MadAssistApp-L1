@@ -1,18 +1,24 @@
 {
   "tabs": {
-    "home": "MadAssistant of ISPM",
+    "home": "MadAssistant",
     "contacts": "Contacts",
     "settings": "Paramètres"
   },
   "settings": {
     "title": "Paramètres",
+    "configuration": "Configuration",
     "theme": "Thème",
     "themeDescription": "Choisissez votre mode d'affichage préféré",
     "language": "Langue",
     "languageDescription": "Sélectionnez votre langue préférée",
     "light": "Clair",
     "dark": "Sombre",
-    "auto": "Auto"
+    "auto": "Auto",
+    "french": "Français",
+    "english": "Anglais",
+    "legal": "Informations légales",
+    "termsTitle": "Conditions d'utilisation",
+    "termsDescription": "Mentions légales et conditions"
   },
   "home": {
     "heroTitle": "Accéder facilement aux Services d'urgence à Madagascar",

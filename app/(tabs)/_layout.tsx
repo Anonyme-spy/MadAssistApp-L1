@@ -53,24 +53,13 @@ export default function TabLayout() {
               style={{ width: 28, height: 28 }}
             />
           ),
-          // Bouton de paramètres dans le coin supérieur droit
-          /*
-          // Pour ajouter un bouton de paramètres dans l'en-tête, décommentez le code suivant
-          // A ete commenté Car juger inutile pour l'instant
           headerRight: () => (
-            <Link href="/parameter" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="gear"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                  <Image
+                    source={require('@/assets/icons/ISPM-removebg-preview2.png')}
+                    style={{ width: 28, height: 28, marginRight: 15 }}
                   />
-                )}
-              </Pressable>
-            </Link>
-          ),*/
+
+          )
         }}
       />
         <Tabs.Screen
