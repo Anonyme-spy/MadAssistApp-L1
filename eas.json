@@ -24,5 +24,10 @@
   },
   "submit": {
     "production": {}
+  },
+  "metadata" : {
+    "git" :{
+      "remote" : "https://github.com/Anonyme-spy/MadAssistApp-L1.git"
+    }
   }
 }
