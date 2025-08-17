@@ -37,7 +37,8 @@
       "favicon": "./assets/images/2.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-dev-client"
     ],
     "experiments": {
       "typedRoutes": true
