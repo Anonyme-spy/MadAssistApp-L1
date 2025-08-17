@@ -49,5 +49,41 @@
       "security": "Security",
       "fire": "Fire"
     }
+  },
+  "terms": {
+    "title": "Terms of Use and Legal Notice",
+    "introduction": {
+      "title": "1. Introduction",
+      "content": "Welcome to MadAssistant. This application has been developed to provide quick access to emergency services in Madagascar. By using this application, you agree to these terms of use."
+    },
+    "usage": {
+      "title": "2. Application Usage",
+      "content": "MadAssistant is intended exclusively to facilitate access to emergency services. The application provides phone numbers and contact information for health, security, and fire services. Users are responsible for the appropriate use of this information."
+    },
+    "liability": {
+      "title": "3. Liability",
+      "content": "The developers of MadAssistant cannot be held responsible for the accuracy of contact information or the availability of emergency services. In case of real emergency, immediately contact the competent authorities."
+    },
+    "privacy": {
+      "title": "4. Personal Data",
+      "content": "MadAssistant does not collect any personal data. The application works locally on your device and does not transmit any information to external servers, except during emergency calls."
+    },
+    "contact": {
+      "title": "5. Contact",
+      "content": "For any questions regarding this application or these terms of use, please contact the development team at ISPM (Institut Supérieur Polytechnique de Madagascar)."
+    },
+    "lastUpdated": "Last updated"
+  },
+
+  "about": {
+    "title": "MadAssistant",
+    "subtitle": "Smart Emergency Assistant",
+    "description": "MadAssistant is your personal safety companion. Quickly access emergency services, find essential contacts, and get the help you need in critical situations. Designed for Madagascar, adapted to your needs.",
+    "features": {
+      "quickCall": "Quick emergency calls",
+      "contacts": "Organized emergency contacts",
+      "multilingual": "Multilingual interface"
+    },
+    "version": "Version"
   }
 }

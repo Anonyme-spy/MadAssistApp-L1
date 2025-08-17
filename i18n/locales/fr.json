@@ -48,5 +48,40 @@
       "security": "Sécurité",
       "fire": "Incendie"
     }
+  },
+  "terms": {
+    "title": "Conditions d'utilisation et Mentions légales",
+    "introduction": {
+      "title": "1. Introduction",
+      "content": "Bienvenue dans MadAssistant. Cette application a été développée pour fournir un accès rapide aux services d'urgence à Madagascar. En utilisant cette application, vous acceptez les présentes conditions d'utilisation."
+    },
+    "usage": {
+      "title": "2. Utilisation de l'application",
+      "content": "MadAssistant est destiné exclusivement à faciliter l'accès aux services d'urgence. L'application fournit des numéros de téléphone et informations de contact pour les services de santé, sécurité, et pompiers. Les utilisateurs sont responsables de l'utilisation appropriée de ces informations."
+    },
+    "liability": {
+      "title": "3. Responsabilité",
+      "content": "Les développeurs de MadAssistant ne peuvent être tenus responsables de l'exactitude des informations de contact ou de la disponibilité des services d'urgence. En cas d'urgence réelle, contactez immédiatement les autorités compétentes."
+    },
+    "privacy": {
+      "title": "4. Données personnelles",
+      "content": "MadAssistant ne collecte aucune donnée personnelle. L'application fonctionne localement sur votre appareil et ne transmet aucune information à des serveurs externes, sauf lors des appels d'urgence."
+    },
+    "contact": {
+      "title": "5. Contact",
+      "content": "Pour toute question concernant cette application ou ces conditions d'utilisation, veuillez contacter l'équipe de développement de l'ISPM (Institut Supérieur Polytechnique de Madagascar)."
+    },
+    "lastUpdated": "Dernière mise à jour"
+  },
+  "about": {
+    "title": "MadAssistant",
+    "subtitle": "Assistant d'urgence intelligent",
+    "description": "MadAssistant est votre compagnon de sécurité personnel. Accédez rapidement aux services d'urgence, trouvez les contacts essentiels et obtenez l'aide dont vous avez besoin en cas de situation critique. Conçu pour Madagascar, adapté à vos besoins.",
+    "features": {
+      "quickCall": "Appels d'urgence rapides",
+      "contacts": "Contacts d'urgence organisés",
+      "multilingual": "Interface multilingue"
+    },
+    "version": "Version"
   }
 }

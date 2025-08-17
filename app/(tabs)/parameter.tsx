@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Text, View } from '@/components/Themed';
 import { ButtonGroup } from '@rneui/themed';
 import { FontAwesome } from '@expo/vector-icons';
@@ -9,6 +9,7 @@ import { useLanguage } from '@/components/LanguageContext';
 import { ThemePreference } from '@/components/utils/theme';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState, useMemo } from 'react';
+import {AboutCard} from "@/components/AboutCard";
 
 const themeIndexMap: Record<ThemePreference, number> = {
   light: 0,
@@ -65,6 +66,7 @@ export default function ParameterScreen() {
   ], []);
 
   return (
+      <ScrollView style={styles.container}>
     <View style={{...baseThemedStyle, ...styles.container}}>
       <Text style={{
         ...baseThemedStyle,
@@ -141,9 +143,12 @@ export default function ParameterScreen() {
         </View>
       </View>
 
+      <AboutCard />
+
       <View style={{...baseThemedStyle, ...styles.separator}} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
+      </ScrollView>
   );
 }
 
