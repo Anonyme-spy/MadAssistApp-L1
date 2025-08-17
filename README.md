@@ -1,4 +1,5 @@
-
+🇫🇷 [Français](./Readme-fr.md)
+🇬🇧 [English](./README.md)
 
 # 🚨 MadAssistant
 
