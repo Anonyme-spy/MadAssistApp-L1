@@ -6,6 +6,7 @@ import { Pressable, Image } from 'react-native';
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { useTranslation} from "react-i18next";
 
 // Fonction pour créer les icônes de la barre d'onglets
 function TabBarIcon(props: {
@@ -18,6 +19,7 @@ function TabBarIcon(props: {
 export default function TabLayout() {
   // Récupère le schéma de couleur actuel (clair ou sombre)
   const colorScheme = useColorScheme();
+  const { t } = useTranslation();
 
   return (
     <Tabs
@@ -35,7 +37,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="contact"
         options={{
-          title: 'Contacts',
+          title: t('tabs.contacts'),
           // Icône de téléphone pour l'onglet des contacts
           tabBarIcon: ({ color }) => <TabBarIcon name="phone" color={color} />,
         }}
@@ -43,7 +45,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'MadAssistant of ISPM',
+          title: t('tabs.home'),
           // Icône de maison pour l'onglet d'accueil
           tabBarIcon: ({ color }) => (
             <Image
@@ -74,7 +76,7 @@ export default function TabLayout() {
         <Tabs.Screen
             name="parameter"
             options={{
-              title: 'Paramètres',
+              title: t('tabs.settings'),
               // Icône d'engrenage pour l'onglet des paramètres
               tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
             }}

@@ -1,145 +1,259 @@
-import React from 'react';
-import { Button, Icon, IconElement, List, ListItem, IconProps, Text } from '@ui-kitten/components';
-import { StyleSheet} from "react-native";
-import { TextProps } from '@ui-kitten/components';
+import React, { useMemo } from 'react';
+import { List, ListItem, Text } from '@ui-kitten/components';
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 import handleEmergencyCall from "@/constants/Calling";
+import { useTranslation } from 'react-i18next';
+import { useThemeContext } from '@/components/ThemedContext';
 
-// Interface définissant la structure d'un élément de la liste de contacts
 interface IListItem {
-  title: string;       // Nom du contact ou du service
-  description: string; // Description ou informations supplémentaires
-  tel: string          // Numéro de téléphone à appeler
+  title: string;
+  description: string;
+  tel: string;
+  category?: string;
 }
 
-// Props du composant ListAppel avec données optionnelles
 interface ListAppelProps {
-  data?: IListItem[];  // Tableau d'éléments de contact (optionnel)
+  data?: IListItem[];
+  searchText?: string;
 }
 
-// Composant principal pour afficher une liste de contacts d'urgence
-export const ListAppel = ({ data }: ListAppelProps): React.ReactElement => {
-  // Utilise les données fournies ou des données par défaut si non spécifiées
-  const listData = data || new Array(8).fill({
-    title: 'Titre',
-    description: 'Description',
-    tel: '123456789',
-  });
+export const ListAppel = ({ data = [], searchText = '' }: ListAppelProps): React.ReactElement => {
+  const { t } = useTranslation();
+  const { theme } = useThemeContext();
 
-  // Composant d'icône de téléphone pour le bouton d'appel
-  const PhoneIcon = (props: IconProps): IconElement => (
-    <Icon
-      {...props}
-      name='phone-outline'
-    />
+  // Supprimer les données factices - utiliser seulement les vraies données
+  const filteredData = useMemo(() => {
+    if (!data || data.length === 0) {
+      return [];
+    }
+
+    if (!searchText.trim()) {
+      return data;
+    }
+
+    const searchLower = searchText.toLowerCase();
+    return data.filter(item =>
+        item.title?.toLowerCase().includes(searchLower) ||
+        item.description?.toLowerCase().includes(searchLower) ||
+        item.tel?.includes(searchText)
+    );
+  }, [data, searchText]);
+
+  const getCategoryIcon = (category?: string): keyof typeof Ionicons.glyphMap => {
+    switch (category) {
+      case 'health': return 'heart-outline';
+      case 'security': return 'shield-outline';
+      case 'fire': return 'flame-outline';
+      case 'social': return 'people-outline';
+      default: return 'person-outline';
+    }
+  };
+
+  const getCategoryColor = (category?: string) => {
+    switch (category) {
+      case 'health': return '#FF6B6B';
+      case 'security': return '#4DABF7';
+      case 'fire': return '#FF922B';
+      case 'social': return '#8CE99A';
+      default: return '#6C757D';
+    }
+  };
+
+  const renderItemAccessory = (tel: string): React.ReactElement => (
+      <TouchableOpacity
+          style={[
+            styles.callButton,
+            { backgroundColor: theme === 'dark' ? '#4DABF7' : '#007BFF' }
+          ]}
+          onPress={() => handleEmergencyCall(tel)}
+          activeOpacity={0.8}
+      >
+        <Ionicons
+            name="call"
+            size={16}
+            color="#FFFFFF"
+            style={styles.phoneIcon}
+        />
+        <Text style={styles.callButtonText}>{t('contacts.call') || 'Appeler'}</Text>
+      </TouchableOpacity>
   );
 
-  // Rendu du bouton d'appel pour chaque élément de la liste
-  const renderItemAccessory = (tel : string): React.ReactElement => (
-    <Button
-      size='medium'
-      style={styles.button}
-      accessoryLeft={PhoneIcon}
-      appearance='filled'
-      onPress={() => {handleEmergencyCall(tel).then()}}
-    >{(evaProps: TextProps) => <Text {...evaProps} style={styles.buttonText}>Appeler</Text>}
-    </Button>
+  const renderItemIcon = (category?: string): React.ReactElement => (
+      <View style={styles.iconContainer}>
+        <Ionicons
+            name={getCategoryIcon(category)}
+            size={28}
+            color={getCategoryColor(category)}
+        />
+      </View>
   );
 
-  // Icône de personne affichée à gauche de chaque élément
-  const renderItemIcon = (props: IconProps): IconElement => (
-    <Icon
-      {...props}
-      name='person'
-      style={[props.style, styles.icon]}
-    />
-  );
-
-  // Rendu du titre de chaque contact avec style personnalisé
   const renderTitle = (title: string): React.ReactElement => (
-    <Text style={styles.title}>{title}</Text>
+      <Text style={[
+        styles.title,
+        { color: theme === 'dark' ? '#FFFFFF' : '#1A1A1A' }
+      ]}>
+        {title}
+      </Text>
   );
 
-  // Rendu de la description de chaque contact avec style personnalisé
   const renderDescription = (description: string): React.ReactElement => (
-    <Text style={styles.description}>{description}</Text>
+      <Text style={[
+        styles.description,
+        { color: theme === 'dark' ? '#B0B0B0' : '#6C757D' }
+      ]}>
+        {description}
+      </Text>
   );
 
-  // Configuration du rendu pour chaque élément de la liste
   const renderItem = ({ item, index }: { item: IListItem; index: number }): React.ReactElement => (
-    <ListItem
-      title={() => renderTitle(item.title)}
-      description={() => renderDescription(item.description)}
-      accessoryLeft={renderItemIcon}
-      accessoryRight={() => renderItemAccessory(item.tel)}
-      style={styles.listItem}
-      key={index}
-    />
+      <ListItem
+          title={() => renderTitle(item.title)}
+          description={() => renderDescription(item.description)}
+          accessoryLeft={() => renderItemIcon(item.category)}
+          accessoryRight={() => renderItemAccessory(item.tel)}
+          style={[
+            styles.listItem,
+            {
+              backgroundColor: theme === 'dark' ? '#2A2A2A' : '#FFFFFF',
+              borderColor: theme === 'dark' ? '#404040' : '#E9ECEF',
+            }
+          ]}
+          key={`contact-${index}-${item.tel}`}
+      />
   );
 
-  // Retourne le composant List avec tous les éléments configurés
+  // Affichage si aucune donnée
+  if (!data || data.length === 0) {
+    return (
+        <View style={styles.emptyContainer}>
+          <Ionicons
+              name="information-circle-outline"
+              size={48}
+              color={theme === 'dark' ? '#666' : '#CCC'}
+          />
+          <Text style={[
+            styles.noResults,
+            { color: theme === 'dark' ? '#B0B0B0' : '#6C757D' }
+          ]}>
+            Aucun contact disponible
+          </Text>
+        </View>
+    );
+  }
+
+  // Affichage si aucun résultat de recherche
+  if (filteredData.length === 0 && searchText.trim()) {
+    return (
+        <View style={styles.emptyContainer}>
+          <Ionicons
+              name="search-outline"
+              size={48}
+              color={theme === 'dark' ? '#666' : '#CCC'}
+          />
+          <Text style={[
+            styles.noResults,
+            { color: theme === 'dark' ? '#B0B0B0' : '#6C757D' }
+          ]}>
+            {t('contacts.noResults') || 'Aucun contact trouvé'}
+          </Text>
+        </View>
+    );
+  }
+
   return (
-    <List
-      style={styles.container}
-      data={listData}
-      renderItem={renderItem}
-      contentContainerStyle={styles.contentContainer}
-    />
+      <List
+          style={styles.container}
+          data={filteredData}
+          renderItem={renderItem}
+          contentContainerStyle={styles.contentContainer}
+          showsVerticalScrollIndicator={false}
+      />
   );
 };
 
-// Styles pour les différents éléments du composant
+// Les styles restent identiques...
 const styles = StyleSheet.create({
-  // Style du conteneur principal de la liste
   container: {
     flex: 1,
     width: '100%',
     paddingHorizontal: 16,
-    paddingTop: 20,
+    paddingTop: 10,
     backgroundColor: 'transparent',
   },
-  // Style du conteneur de contenu pour la liste
   contentContainer: {
     paddingBottom: 20,
   },
-  // Style de chaque élément individuel de la liste
   listItem: {
     marginVertical: 8,
-    borderRadius: 12,
-    padding: 16,
-    minHeight: 150,
+    borderRadius: 16,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
+    minHeight: 120,
+    borderWidth: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  iconContainer: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 4,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: '700',
+    marginBottom: 8,
+    lineHeight: 24,
+  },
+  description: {
+    fontSize: 14,
+    lineHeight: 20,
+    marginTop: 4,
+  },
+  callButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 25,
+    minWidth: 100,
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 3,
   },
-  // Style de l'icône de personne
-  icon: {
-    width: 40,
-    height: 40,
+  phoneIcon: {
+    marginRight: 6,
   },
-  // Style du titre de chaque contact
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 15,
+  callButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
-  // Style du texte de description
-  description: {
-    fontSize: 11,
-    color: '#8F9BB3',
-    lineHeight: 20,
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 60,
   },
-  // Style du bouton d'appel
-  button: {
-    borderRadius: 30,
-    padding: 10,
-    marginLeft: 10,
-  },
-  // Style du texte dans le bouton d'appel
-  buttonText: {
-    marginLeft: -4, // Réduit l'espace entre l'icône et le texte
-    fontWeight: 'bold',
-    color: '#fff',
+  noResults: {
+    textAlign: 'center',
+    marginTop: 16,
+    fontSize: 16,
+    fontStyle: 'italic',
   },
 });

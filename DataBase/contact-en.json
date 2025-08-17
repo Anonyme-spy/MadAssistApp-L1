@@ -1,0 +1,46 @@
+{
+  "emergencyContacts": [
+    {
+      "id": 1,
+      "title": "Emergency Medical Service",
+      "description": "For medical emergencies and ambulances",
+      "tel": "0387074704",
+      "category": "health"
+    },
+    {
+      "id": 2,
+      "title": "Police",
+      "description": "For police emergencies and interventions",
+      "tel": "0376213686",
+      "category": "security"
+    },
+    {
+      "id": 3,
+      "title": "Fire Department",
+      "description": "For fire emergencies and rescue operations",
+      "tel": "0381524257",
+      "category": "fire"
+    },
+    {
+      "id": 4,
+      "title": "Poison Control Center",
+      "description": "For poisoning and poison-related emergencies",
+      "tel": "0387074704",
+      "category": "health"
+    },
+    {
+      "id": 5,
+      "title": "Psychiatric Emergency",
+      "description": "For psychiatric crises and mental health emergencies",
+      "tel": "0387074704",
+      "category": "health"
+    },
+    {
+      "id": 6,
+      "title": "Social Crisis Center",
+      "description": "For social crises and social emergency situations",
+      "tel": "0387074704",
+      "category": "social"
+    }
+  ]
+}

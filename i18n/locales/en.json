@@ -1,0 +1,53 @@
+{
+  "tabs": {
+    "home": "MadAssistant of ISPM",
+    "contacts": "Contacts",
+    "settings": "Settings"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "themeDescription": "Choose your preferred display mode",
+    "language": "Language",
+    "languageDescription": "Select your preferred language",
+    "light": "Light",
+    "dark": "Dark",
+    "auto": "Auto"
+  },
+  "home": {
+    "heroTitle": "Easy access to Emergency Services in Madagascar",
+    "heroSubtitle": "Your quick guide to emergency services in Madagascar",
+    "emergencyServices": "Emergency Services",
+    "services": {
+      "health": {
+        "title": "Health",
+        "description": "Contact health services quickly."
+      },
+      "security": {
+        "title": "Security",
+        "description": "Call law enforcement with one click."
+      },
+      "fire": {
+        "title": "Fire",
+        "description": "Quickly access firefighters."
+      },
+      "other": {
+        "title": "Other",
+        "description": "Other important emergency services."
+      }
+    }
+  },
+
+  "contacts": {
+    "searchPlaceholder": "Search contacts...",
+    "cancel": "Cancel",
+    "call": "Call",
+    "noResults": "No contacts found",
+    "categories": {
+      "all": "All",
+      "health": "Health",
+      "security": "Security",
+      "fire": "Fire"
+    }
+  }
+}

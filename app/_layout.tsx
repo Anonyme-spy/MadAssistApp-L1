@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import '@/i18n';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -18,6 +19,7 @@ export {
 SplashScreen.preventAutoHideAsync();
 
 import { ThemeProviderCustom, useThemeContext } from '@/components/ThemedContext';
+import { LanguageProvider } from "@/components/LanguageContext";
 
 // Composant pour gérer et afficher les erreurs dans l'application
 function ErrorBoundary({ error }: { error: Error }) {
@@ -27,6 +29,34 @@ function ErrorBoundary({ error }: { error: Error }) {
       <Text>Something went wrong!</Text>
       <Text>{error.message}</Text>
     </View>
+  );
+}
+
+// Composant principal de navigation qui configure les thèmes et les routes
+// Point d'entrée principal de l'application
+export default function RootLayout() {
+  // Chargement des polices personnalisées pour l'application
+  const [loaded, error] = useFonts({
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  });
+
+  // Masque l'écran de démarrage une fois les polices chargées ou en cas d'erreur
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  // Affiche rien pendant le chargement des polices
+  if (!loaded) return null;
+
+  // Retourne l'application avec les providers dans le bon ordre
+  return (
+    <LanguageProvider>
+      <ThemeProviderCustom>
+        <RootLayoutNav />
+      </ThemeProviderCustom>
+    </LanguageProvider>
   );
 }
 
@@ -42,10 +72,8 @@ function RootLayoutNav() {
 
       {/* Fournisseur de thème pour les composants UI Kitten */}
       <ApplicationProvider {...eva} theme={theme === 'dark' ? eva.dark : eva.light}>
-
         {/* Fournisseur de thème pour React Navigation */}
         <ThemeProvider value={theme === 'dark' ? DarkTheme : DefaultTheme}>
-
           {/* Configuration des écrans de navigation principaux */}
           <Stack>
             {/* Écran des onglets principaux (sans en-tête) */}
@@ -54,31 +82,5 @@ function RootLayoutNav() {
         </ThemeProvider>
       </ApplicationProvider>
     </>
-  );
-}
-
-// Point d'entrée principal de l'application
-export default function RootLayout() {
-  // Chargement des polices personnalisées pour l'application
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    // Ajoutez d'autres polices ici si nécessaire
-  });
-
-  // Masque l'écran de démarrage une fois les polices chargées ou en cas d'erreur
-  useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
-
-  // Affiche rien pendant le chargement des polices
-  if (!loaded) return null;
-
-  // Retourne l'application avec le fournisseur de thème personnalisé
-  return (
-    <ThemeProviderCustom>
-      <RootLayoutNav />
-    </ThemeProviderCustom>
   );
 }

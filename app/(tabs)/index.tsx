@@ -5,8 +5,9 @@ import CardBox from "@/components/Card";
 import {Button} from "@rneui/themed";
 import { FontAwesome } from '@expo/vector-icons';
 import handleEmergencyCall from "@/constants/Calling";
-import React from "react";
+import React, { useMemo } from "react";
 import { baseThemedStyle } from "@/constants/baseThemedStyle";
+import { useTranslation } from 'react-i18next';
 
 // Récupération des dimensions de l'écran pour un design responsive
 const { width } = Dimensions.get('window');
@@ -23,52 +24,52 @@ type ServiceItem = {
 };
 
 export default function TabOneScreen() {
-  // Données des services d'urgence - CHANGEMENT : Organisation plus claire des données
-  const serviceData: ServiceItem[] = [
+  const { t } = useTranslation();
+
+  // Données des services d'urgence avec traductions dynamiques
+  const serviceData: ServiceItem[] = useMemo(() => [
     {
       id: '1',
-      title: 'Santé',
+      title: t('home.services.health.title'),
       icon: 'phone',
-      description: 'Contactez les services de santé rapidement.',
+      description: t('home.services.health.description'),
       color1: '#FD1D1D',
       color2: '#C72222',
       tabIndex: 1
     },
     {
       id: '2',
-      title: 'Sécurité',
+      title: t('home.services.security.title'),
       icon: 'shield',
-      description: "Appelez les forces de l'ordre en un click.",
+      description: t('home.services.security.description'),
       color1:'#06063D',
       color2:'#090979',
       tabIndex:2
     },
     {
       id: '3',
-      title: 'Incendie',
+      title: t('home.services.fire.title'),
       icon: 'fire',
-      description: 'Accédez rapidement aux pompiers.',
+      description: t('home.services.fire.description'),
       color1: '#FCB045',
       color2: '#FD1D1D',
       tabIndex: 3
     },
     {
       id: '4',
-      title: 'Autres',
+      title: t('home.services.other.title'),
       icon: 'info',
-      description: "Autres services d'urgence importants.",
+      description: t('home.services.other.description'),
       color1: '#22063D',
       color2: '#610979',
       tabIndex: 0
     },
-  ];
+  ], [t]);
 
-  // @ts-ignore
-  // @ts-ignore
   return (
     // Conteneur principal avec style thématique
     <View style={styles.container}>
-      {/* ScrollView pour permettre le défilement vertical - AMÉLIORATION: Masquage de l'indicateur de scroll */}
+      {/* ScrollView pour permettre le défilement vertical */}
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         showsVerticalScrollIndicator={false}
@@ -80,27 +81,27 @@ export default function TabOneScreen() {
           end={{ x: 0, y: 1 }}
           style={styles.hero}
         >
-          {/* CHANGEMENT : Ajout d'un conteneur pour le contenu hero avec meilleur centrage */}
+          {/* Conteneur pour le contenu hero avec meilleur centrage */}
           {/* @ts-ignore */}
           <View style={styles.heroContent}>
             {/* @ts-ignore */}
             <Text style={styles.heroTitle}>
-              Accéder facilement aux Services d'urgence à Madagascar
+              {t('home.heroTitle')}
             </Text>
             {/* @ts-ignore */}
             <Text style={styles.heroSubtitle}>
-              Votre guide rapide pour les services d'urgence à Madagascar
+              {t('home.heroSubtitle')}
             </Text>
           </View>
         </LinearGradient>
 
-        {/* SECTION CONTENU PRINCIPAL - AMÉLIORATION : Structure plus organisée */}
+        {/* SECTION CONTENU PRINCIPAL */}
         {/* @ts-ignore */}
         <View style={styles.content}>
           {/* SECTION SERVICES - Grille des services d'urgence */}
           <View style={styles.servicesSection}>
-            {/* AJOUT : Titre de section pour une meilleure hiérarchie visuelle */}
-            <Text style={styles.sectionTitle}>Services d'urgence</Text>
+            {/* Titre de section traduit */}
+            <Text style={styles.sectionTitle}>{t('home.emergencyServices')}</Text>
 
             {/* FlatList pour afficher les cartes de service en grille 2x2 */}
             <FlatList
@@ -115,23 +116,22 @@ export default function TabOneScreen() {
             />
           </View>
 
-          {/* SECTION SOS - Bouton d'urgence principal
-          */}
+          {/* SECTION SOS - Bouton d'urgence principal */}
           {/* @ts-ignore */}
           <View style={styles.sosSection}>
-            {/* AMÉLIORATION : Bouton SOS avec gradient et ombre plus prononcée */}
+            {/* Bouton SOS avec gradient et ombre */}
             <Button
-              ViewComponent={LinearGradient as any} // Utilisation du gradient comme composant de vue
+              ViewComponent={LinearGradient as any}
               linearGradientProps={{
-                colors: ["#FF9800", "#F44336"], // Gradient orange vers rouge pour l'urgence
+                colors: ["#FF9800", "#F44336"],
                 start: { x: 0, y: 0.5 },
                 end: { x: 1, y: 0.5 },
               }}
               buttonStyle={styles.sosButton}
               titleStyle={styles.sosButtonText}
-              onPress={() => handleEmergencyCall('017')} // Appel d'urgence au 017
+              onPress={() => handleEmergencyCall('017')}
             >
-              {/* Icône téléphone avec espacement amélioré */}
+              {/* Icône téléphone avec espacement */}
               <FontAwesome name="phone" size={24} color="white" style={styles.sosIcon} />
               S O S
             </Button>
@@ -146,78 +146,75 @@ const styles = StyleSheet.create({
   // CONTENEUR PRINCIPAL
   container: {
     flex: 1,
-    ...baseThemedStyle, // Application du style thématique de base
+    ...baseThemedStyle,
   },
 
-  // CHANGEMENT : Style pour le contenu du ScrollView
+  // Style pour le contenu du ScrollView
   scrollViewContent: {
-    flexGrow: 1, // Permet au contenu de s'étendre sur toute la hauteur
-
+    flexGrow: 1,
   },
 
-  // SECTION HERO - AMÉLIORATION : Hauteur et bordures arrondies optimisées
+  // SECTION HERO
   hero: {
-    height: 280, // Hauteur fixe pour un aspect visuel cohérent
+    height: 280,
     width: '100%',
-    borderBottomLeftRadius: 25, // Bordures arrondies en bas
+    borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
-
-
   },
 
-  // AJOUT : Conteneur pour le contenu de la section hero
+  // Conteneur pour le contenu de la section hero
   heroContent: {
     flex: 1,
-    justifyContent: 'center', // Centrage vertical
-    alignItems: 'center', // Centrage horizontal
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 40,
+    backgroundColor: 'transparent',
   },
 
-  // AMÉLIORATION : Titre principal avec meilleure lisibilité
+  // Titre principal
   heroTitle: {
-    fontSize: 28, // Taille augmentée pour plus d'impact
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#ffffff',
     marginBottom: 15,
-    lineHeight: 34, // Espacement entre les lignes
+    lineHeight: 34,
   },
 
-  // AMÉLIORATION : Sous-titre avec transparence pour hiérarchie visuelle
+  // Sous-titre
   heroSubtitle: {
     fontSize: 16,
     textAlign: 'center',
-    color: 'rgba(255,255,255,0.9)', // Blanc avec 90% d'opacité
+    color: 'rgba(255,255,255,0.9)',
     lineHeight: 22,
   },
 
-  // AJOUT : Conteneur pour le contenu principal
+  // Conteneur pour le contenu principal
   content: {
     flex: 1,
-    paddingTop: 20, // Espacement depuis la section hero
+    paddingTop: 20,
   },
 
-  // AJOUT : Section dédiée aux services
+  // Section dédiée aux services
   servicesSection: {
     paddingHorizontal: 15,
-    marginBottom: 30, // Espacement avant la section SOS
+    marginBottom: 30,
     ...baseThemedStyle,
   },
 
-  // AJOUT : Style pour le titre de section
+  // Style pour le titre de section
   sectionTitle: {
     fontSize: 22,
-    fontWeight: '600', // Poids semi-gras
-   // marginBottom: 20,
+    fontWeight: '600',
     textAlign: 'center',
-    ...baseThemedStyle, // Application du style thématique
+    ...baseThemedStyle,
   },
 
-  // AMÉLIORATION : Style pour les lignes de la grille
+  // Style pour les lignes de la grille
   gridRow: {
-    justifyContent: 'space-between', // Espacement uniforme entre les colonnes
-    marginBottom: 15, // Espacement entre les lignes
+    justifyContent: 'space-between',
+    marginBottom: 15,
   },
 
   // Style pour le contenu de la grille
@@ -225,24 +222,19 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
 
-  // AJOUT: Section dédiée au bouton SOS
+  // Section dédiée au bouton SOS
   sosSection: {
-
     paddingHorizontal: 20,
-    paddingBottom: 30, // Espacement en bas de l'écran
+    paddingBottom: 30,
   },
 
-  // AMÉLIORATION : Bouton SOS avec ombre et dimensions optimisées
+  // Bouton SOS
   sosButton: {
-    padding: 18, // Padding généreux pour faciliter l'interaction
-    borderRadius: 25, // Bordures très arrondies
-    width: '100%', // Largeur complète
-    minHeight: 60, // Hauteur minimale pour accessibilité
-
-    // AJOUT : Ombre pour effet de profondeur (Android)
+    padding: 18,
+    borderRadius: 25,
+    width: '100%',
+    minHeight: 60,
     elevation: 8,
-
-    // AJOUT: Ombre pour iOS
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -256,11 +248,11 @@ const styles = StyleSheet.create({
   sosButtonText: {
     fontSize: 20,
     fontWeight: 'bold',
-    letterSpacing: 2, // Espacement entre les lettres pour effet dramatique
+    letterSpacing: 2,
   },
 
-  // AJOUT : Style pour l'icône du bouton SOS
+  // Style pour l'icône du bouton SOS
   sosIcon: {
-    marginRight: 10, // Espacement entre l'icône et le texte
+    marginRight: 10,
   },
 });
