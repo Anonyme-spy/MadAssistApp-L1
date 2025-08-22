@@ -49,3 +49,6 @@ logs/
 
 # EAS
 .easignore
+
+#android
+android/
