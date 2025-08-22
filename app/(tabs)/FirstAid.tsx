@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Pressable } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Pressable, ScrollView } from 'react-native';
 import { Text } from '@/components/Themed';
 import Search from "@/components/SearchBar";
 import { TabView } from '@rneui/themed';
@@ -60,94 +60,94 @@ export default function FirstAidScreen() {
         styles.safeArea,
         { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
       ]}>
-        {/* Hero Section */}
-        <View style={styles.heroSection}>
-          <ImageBackground
-              source={require('@/assets/images/FirstAidHero.jpg')}
-              style={styles.heroBackground}
-              resizeMode="cover"
-          >
-            <LinearGradient
-                colors={['transparent', 'rgba(0,0,0,0.3)', 'rgba(0,0,0,0.7)']}
-                style={styles.overlay}
-            />
-            <View style={styles.heroContent}>
-              <View style={styles.textContainer}>
-                <Text style={styles.heroTitle}>
-                  {t('firstAid.title')}
-                </Text>
-                <Text style={styles.heroSubtitle}>
-                  {t('firstAid.subtitle')}
-                </Text>
+        <ScrollView
+            style={styles.scrollContainer}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+        >
+          {/* Hero Section - Réduite */}
+          <View style={styles.heroSection}>
+            <ImageBackground
+                source={require('@/assets/images/FirstAidHero.jpg')}
+                style={styles.heroBackground}
+                resizeMode="cover"
+            >
+              <LinearGradient
+                  colors={['transparent', 'rgba(0,0,0,0.4)', 'rgba(0,0,0,0.8)']}
+                  style={styles.overlay}
+              />
+              <View style={styles.heroContent}>
+                <View style={styles.textContainer}>
+                  <Text style={styles.heroTitle}>
+                    {t('firstAid.title')}
+                  </Text>
+                  <Text style={styles.heroSubtitle}>
+                    {t('firstAid.subtitle')}
+                  </Text>
+                </View>
               </View>
-            </View>
-          </ImageBackground>
-        </View>
+            </ImageBackground>
+          </View>
 
-        {/* Search Bar */}
-        <Search
-            onSearchChange={handleSearchChange}
-            Placeholder={t('firstAid.searchPlaceholder')}
-        />
-
-        {/* Tabs */}
-        <View style={[
-          styles.tabContainer,
-          { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
-        ]}>
-          <View style={styles.customTabBar}>
-            <CustomTabItem
-                title={language === 'fr' ? 'Tout' : 'All'}
-                isActive={index === 0}
-                onPress={() => setIndex(0)}
-            />
-            <CustomTabItem
-                title={language === 'fr' ? 'Respiratoire' : 'Respiratory'}
-                isActive={index === 1}
-                onPress={() => setIndex(1)}
-            />
-            <CustomTabItem
-                title={language === 'fr' ? 'Cardiaque' : 'Cardiac'}
-                isActive={index === 2}
-                onPress={() => setIndex(2)}
-            />
-            <CustomTabItem
-                title={language === 'fr' ? 'Urgences' : 'Emergency'}
-                isActive={index === 3}
-                onPress={() => setIndex(3)}
+          {/* Search Bar - Compacte */}
+          <View style={styles.searchContainer}>
+            <Search
+                onSearchChange={handleSearchChange}
+                Placeholder={t('firstAid.searchPlaceholder')}
             />
           </View>
-        </View>
 
-        {/* Tab Content */}
-        <View style={[
-          styles.tabViewContainer,
-          { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
-        ]}>
-          <TabView value={index} onChange={setIndex} animationType="spring">
-            <TabView.Item style={styles.tabViewItem}>
-              <EmergencyCard category="all" searchText={searchText} />
-            </TabView.Item>
+          {/* Tabs - Compactes */}
+          <View style={[
+            styles.tabContainer,
+            { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
+          ]}>
+            <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={styles.customTabBar}
+                contentContainerStyle={styles.tabBarContent}
+            >
+              <CustomTabItem
+                  title={t('firstAid.categories.all')}
+                  isActive={index === 0}
+                  onPress={() => setIndex(0)}
+              />
+              <CustomTabItem
+                  title={t('firstAid.categories.respiratory')}
+                  isActive={index === 1}
+                  onPress={() => setIndex(1)}
+              />
+              <CustomTabItem
+                  title={t('firstAid.categories.cardiac')}
+                  isActive={index === 2}
+                  onPress={() => setIndex(2)}
+              />
+              <CustomTabItem
+                  title={t('firstAid.categories.emergency')}
+                  isActive={index === 3}
+                  onPress={() => setIndex(3)}
+              />
+            </ScrollView>
+          </View>
 
-            <TabView.Item style={styles.tabViewItem}>
-              <EmergencyCard category="Respiratory" searchText={searchText} />
-            </TabView.Item>
-
-            <TabView.Item style={styles.tabViewItem}>
-              <EmergencyCard category="Cardiac" searchText={searchText} />
-            </TabView.Item>
-
-            <TabView.Item style={styles.tabViewItem}>
-              <EmergencyCard category="Emergency" searchText={searchText} />
-            </TabView.Item>
-          </TabView>
-        </View>
+          {/* Tab Content - Optimisé */}
+          <View style={styles.tabViewContainer}>
+            {index === 0 && <EmergencyCard category="all" searchText={searchText} />}
+            {index === 1 && <EmergencyCard category="Respiratory" searchText={searchText} />}
+            {index === 2 && <EmergencyCard category="Cardiac" searchText={searchText} />}
+            {index === 3 && <EmergencyCard category="Emergency" searchText={searchText} />}
+          </View>
+        </ScrollView>
       </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
+    flex: 1,
+  },
+  scrollContainer: {
     flex: 1,
   },
   heroSection: {
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     paddingHorizontal: 24,
-    paddingBottom: 16,
+    paddingVertical: 12, // Réduit
   },
   textContainer: {
     backgroundColor: 'transparent',
@@ -181,33 +181,40 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     marginBottom: 4,
     textShadowColor: 'rgba(0,0,0,0.5)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
   },
   heroSubtitle: {
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: '400',
     color: '#FFFFFF',
     opacity: 0.9,
     textShadowColor: 'rgba(0,0,0,0.5)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 2,
   },
+  searchContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 8, // Réduit l'espace vertical
+  },
   tabContainer: {
     paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingVertical: 6, // Réduit de 10 à 6
   },
   customTabBar: {
+    flexGrow: 0,
+  },
+  tabBarContent: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: 'transparent',
+    alignItems: 'center',
+    paddingHorizontal: 4,
   },
   customTabButton: {
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 20,
     borderWidth: 1,
-    minWidth: wp('20%'),
+    marginHorizontal: 4,
     alignItems: 'center',
   },
   customTabTitle: {
@@ -216,11 +223,6 @@ const styles = StyleSheet.create({
   },
   tabViewContainer: {
     flex: 1,
-    width: '100%',
-  },
-  tabViewItem: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: 'transparent',
+    minHeight: height * 0.6, // Assure une hauteur minimum
   },
 });

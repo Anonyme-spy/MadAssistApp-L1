@@ -5,7 +5,6 @@
     "settings": "Settings",
     "firstAid": "First Aid"
   },
-
   "settings": {
     "title": "Settings",
     "configuration": "Configuration",
@@ -45,7 +44,6 @@
       }
     }
   },
-
   "contacts": {
     "searchPlaceholder": "Search contacts...",
     "cancel": "Cancel",
@@ -55,8 +53,20 @@
       "all": "All",
       "health": "Health",
       "security": "Security",
-      "fire": "Fire"
-    }
+      "fire": "Fire",
+      "insurance": "Insurance"
+    },
+    "primary": "Primary",
+    "alternative": "Alternative",
+    "third": "Third",
+    "fourth": "Fourth",
+    "emergency": "Emergency",
+    "description": "Description",
+    "phoneNumbers": "Phone Numbers",
+    "email": "Email",
+    "location": "Location",
+    "availability": "Availability",
+    "close": "Close"
   },
   "terms": {
     "title": "Terms of Use and Legal Notice",
@@ -82,7 +92,6 @@
     },
     "lastUpdated": "Last updated"
   },
-
   "about": {
     "title": "MadAssistant",
     "subtitle": "Smart Emergency Assistant",

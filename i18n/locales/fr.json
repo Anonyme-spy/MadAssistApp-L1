@@ -53,8 +53,20 @@
       "all": "Tout",
       "health": "Santé",
       "security": "Sécurité",
-      "fire": "Incendie"
-    }
+      "fire": "Incendie",
+      "insurance": "Assurance"
+    },
+    "primary": "Principal",
+    "alternative": "Alternatif",
+    "third": "Troisième",
+    "fourth": "Quatrième",
+    "emergency": "Urgence",
+    "description": "Description",
+    "phoneNumbers": "Numéros de téléphone",
+    "email": "Email",
+    "location": "Localisation",
+    "availability": "Disponibilité",
+    "close": "Fermer"
   },
   "terms": {
     "title": "Conditions d'utilisation et Mentions légales",

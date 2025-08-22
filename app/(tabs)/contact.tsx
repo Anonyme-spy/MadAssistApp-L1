@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, SafeAreaView, View } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Pressable, FlatList } from 'react-native';
 import { Text } from '@/components/Themed';
 import Search from "@/components/SearchBar";
 import { ListAppel } from "@/components/list";
-import { Tab, TabView } from '@rneui/themed';
-import { baseThemedStyle } from "@/constants/baseThemedStyle";
 import { useLocalSearchParams } from 'expo-router';
 import contactsDataFr from "@/DataBase/contact.json";
 import contactsDataEn from "@/DataBase/contact-en.json";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { TouchableWithoutFeedback, Pressable } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/components/LanguageContext';
 import { useThemeContext } from '@/components/ThemedContext';
@@ -21,10 +18,10 @@ export default function TabTwoScreen() {
   const { tabIndex } = useLocalSearchParams();
   const [searchText, setSearchText] = useState('');
 
-  const [index, setIndex] = React.useState(() => {
+  const [index, setIndex] = useState(() => {
     if (tabIndex) {
       const parsedIndex = parseInt(tabIndex as string, 10);
-      return !isNaN(parsedIndex) ? parsedIndex : 0;
+      return !isNaN(parsedIndex) && parsedIndex < 5 ? parsedIndex : 0;
     }
     return 0;
   });
@@ -40,10 +37,6 @@ export default function TabTwoScreen() {
 
   const contacts = language === 'fr' ? contactsDataFr.emergencyContacts : contactsDataEn.emergencyContacts;
 
-  // Debug pour vérifier les données
-  console.log('Total contacts:', contacts.length);
-  console.log('First contact:', contacts[0]);
-
   const getFilteredContacts = (category: string) => {
     if (category === 'all') return contacts;
 
@@ -51,11 +44,11 @@ export default function TabTwoScreen() {
       'health': 'health',
       'security': 'security',
       'fire': 'fire',
+      'insurance': 'insurance',
     };
 
     const jsonCategory = categoryMap[category];
     const filtered = contacts.filter(contact => contact.category === jsonCategory);
-    console.log(`${category} contacts:`, filtered.length);
     return filtered;
   };
 
@@ -94,63 +87,62 @@ export default function TabTwoScreen() {
       </Pressable>
   );
 
-  return (
-      <SafeAreaView style={[
-        styles.safeArea,
-        { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
-      ]}>
-        <Search onSearchChange={handleSearchChange} Placeholder={t('contacts.searchPlaceholder')} />
+  const ListHeader = () => (
+      <>
+        <View style={styles.searchContainer}>
+          <Search
+              onSearchChange={handleSearchChange}
+              Placeholder={t('contacts.searchPlaceholder')}
+          />
+        </View>
 
         <View style={[
           styles.tabContainer,
           { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
         ]}>
-          <View style={styles.customTabBar}>
-            <CustomTabItem
-                title={t('contacts.categories.all')}
-                isActive={index === 0}
-                onPress={() => setIndex(0)}
-            />
-            <CustomTabItem
-                title={t('contacts.categories.health')}
-                isActive={index === 1}
-                onPress={() => setIndex(1)}
-            />
-            <CustomTabItem
-                title={t('contacts.categories.security')}
-                isActive={index === 2}
-                onPress={() => setIndex(2)}
-            />
-            <CustomTabItem
-                title={t('contacts.categories.fire')}
-                isActive={index === 3}
-                onPress={() => setIndex(3)}
-            />
-          </View>
+          <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={[
+                { key: '0', title: t('contacts.categories.all'), index: 0 },
+                { key: '1', title: t('contacts.categories.health'), index: 1 },
+                { key: '2', title: t('contacts.categories.security'), index: 2 },
+                { key: '3', title: t('contacts.categories.fire'), index: 3 },
+                { key: '4', title: t('contacts.categories.insurance'), index: 4 },
+              ]}
+              renderItem={({ item }) => (
+                  <CustomTabItem
+                      title={item.title}
+                      isActive={index === item.index}
+                      onPress={() => setIndex(item.index)}
+                  />
+              )}
+              contentContainerStyle={styles.tabBarContent}
+          />
         </View>
+      </>
+  );
 
-        <View style={[
-          styles.tabViewContainer,
-          { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
-        ]}>
-          <TabView value={index} onChange={setIndex} animationType="spring">
-            <TabView.Item style={styles.tabViewItem}>
-              <ListAppel data={getFilteredContacts('all')} searchText={searchText} />
-            </TabView.Item>
+  const getCurrentData = () => {
+    switch (index) {
+      case 1: return getFilteredContacts('health');
+      case 2: return getFilteredContacts('security');
+      case 3: return getFilteredContacts('fire');
+      case 4: return getFilteredContacts('insurance');
+      default: return getFilteredContacts('all');
+    }
+  };
 
-            <TabView.Item style={styles.tabViewItem}>
-              <ListAppel data={getFilteredContacts('health')} searchText={searchText} />
-            </TabView.Item>
-
-            <TabView.Item style={styles.tabViewItem}>
-              <ListAppel data={getFilteredContacts('security')} searchText={searchText} />
-            </TabView.Item>
-
-            <TabView.Item style={styles.tabViewItem}>
-              <ListAppel data={getFilteredContacts('fire')} searchText={searchText} />
-            </TabView.Item>
-          </TabView>
-        </View>
+  return (
+      <SafeAreaView style={[
+        styles.safeArea,
+        { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }
+      ]}>
+        <ListAppel
+            data={getCurrentData()}
+            searchText={searchText}
+            ListHeaderComponent={ListHeader}
+        />
       </SafeAreaView>
   );
 }
@@ -159,34 +151,30 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
-  tabContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-  },
-  customTabBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+  searchContainer: {
+    paddingHorizontal: 4,
+    paddingVertical: 4,
     backgroundColor: 'transparent',
+  },
+  tabContainer: {
+    paddingHorizontal: 4,
+    paddingVertical: 6,
+  },
+  tabBarContent: {
+    alignItems: 'center',
+    paddingHorizontal: 4,
   },
   customTabButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    borderRadius: 20,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 16,
     borderWidth: 1,
-    minWidth: wp('20%'),
+    marginHorizontal: 3,
     alignItems: 'center',
+    minWidth: wp('16%'),
   },
   customTabTitle: {
-    fontSize: 12,
+    fontSize: 10,
     textAlign: 'center',
-  },
-  tabViewContainer: {
-    flex: 1,
-    width: '100%',
-  },
-  tabViewItem: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: 'transparent',
   },
 });

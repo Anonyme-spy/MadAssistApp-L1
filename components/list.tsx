@@ -1,43 +1,82 @@
-import React, { useMemo } from 'react';
-import { List, ListItem, Text } from '@ui-kitten/components';
+import React, { useMemo, useState } from 'react';
+import { FlatList } from 'react-native';
+import { ListItem, Text } from '@ui-kitten/components';
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import handleEmergencyCall from "@/constants/Calling";
 import { useTranslation } from 'react-i18next';
 import { useThemeContext } from '@/components/ThemedContext';
+import ContactModal from './ContactModal';
 
 interface IListItem {
+  id?: number;
   title: string;
   description: string;
-  tel: string;
+  tel?: string;
+  alternativeTel?: string;
+  emergencyTel?: string;
+  thirdTel?: string;
+  fourthTel?: string;
   category?: string;
+  subcategory?: string;
+  location?: string;
+  availability?: string;
+  email?: string;
 }
 
 interface ListAppelProps {
   data?: IListItem[];
   searchText?: string;
+  ListHeaderComponent?: () => React.ReactElement;
 }
 
-export const ListAppel = ({ data = [], searchText = '' }: ListAppelProps): React.ReactElement => {
+export const ListAppel = ({ data = [], searchText = '', ListHeaderComponent }: ListAppelProps): React.ReactElement => {
   const { t } = useTranslation();
   const { theme } = useThemeContext();
+  const [selectedContact, setSelectedContact] = useState<IListItem | null>(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  // Supprimer les données factices - utiliser seulement les vraies données
   const filteredData = useMemo(() => {
     if (!data || data.length === 0) {
       return [];
     }
 
+
     if (!searchText.trim()) {
       return data;
     }
 
-    const searchLower = searchText.toLowerCase();
-    return data.filter(item =>
-        item.title?.toLowerCase().includes(searchLower) ||
-        item.description?.toLowerCase().includes(searchLower) ||
-        item.tel?.includes(searchText)
-    );
+    const searchLower = searchText.toLowerCase().trim();
+    const searchTerms = searchLower.split(' ').filter(term => term.length > 0);
+
+    return data.filter(item => {
+      const titleMatch = item.title?.toLowerCase().includes(searchLower);
+      const descriptionMatch = item.description?.toLowerCase().includes(searchLower);
+
+      const telMatch = [item.tel, item.alternativeTel, item.emergencyTel, item.thirdTel, item.fourthTel]
+          .some(phone => phone?.replace(/[\s\-\(\)]/g, '').includes(searchText.replace(/[\s\-\(\)]/g, '')));
+
+      const locationMatch = item.location?.toLowerCase().includes(searchLower);
+      const categoryMatch = item.category?.toLowerCase().includes(searchLower);
+      const subcategoryMatch = item.subcategory?.toLowerCase().includes(searchLower);
+
+      const multiWordMatch = searchTerms.every(term =>
+          item.title?.toLowerCase().includes(term) ||
+          item.description?.toLowerCase().includes(term) ||
+          item.location?.toLowerCase().includes(term)
+      );
+
+      return titleMatch || descriptionMatch || telMatch || locationMatch ||
+          categoryMatch || subcategoryMatch || multiWordMatch;
+    }).sort((a, b) => {
+      const aTitle = a.title?.toLowerCase() || '';
+      const bTitle = b.title?.toLowerCase() || '';
+
+      if (aTitle.startsWith(searchLower) && !bTitle.startsWith(searchLower)) return -1;
+      if (!aTitle.startsWith(searchLower) && bTitle.startsWith(searchLower)) return 1;
+
+      return aTitle.localeCompare(bTitle);
+    });
   }, [data, searchText]);
 
   const getCategoryIcon = (category?: string): keyof typeof Ionicons.glyphMap => {
@@ -45,6 +84,8 @@ export const ListAppel = ({ data = [], searchText = '' }: ListAppelProps): React
       case 'health': return 'heart-outline';
       case 'security': return 'shield-outline';
       case 'fire': return 'flame-outline';
+      case 'insurance': return 'document-text-outline';
+      case 'consular': return 'flag-outline';
       case 'social': return 'people-outline';
       default: return 'person-outline';
     }
@@ -55,29 +96,38 @@ export const ListAppel = ({ data = [], searchText = '' }: ListAppelProps): React
       case 'health': return '#FF6B6B';
       case 'security': return '#4DABF7';
       case 'fire': return '#FF922B';
-      case 'social': return '#8CE99A';
+      case 'insurance': return '#9775FA';
+      case 'consular': return '#51CF66';
       default: return '#6C757D';
     }
   };
 
-  const renderItemAccessory = (tel: string): React.ReactElement => (
-      <TouchableOpacity
-          style={[
-            styles.callButton,
-            { backgroundColor: theme === 'dark' ? '#4DABF7' : '#007BFF' }
-          ]}
-          onPress={() => handleEmergencyCall(tel)}
-          activeOpacity={0.8}
-      >
-        <Ionicons
-            name="call"
-            size={16}
-            color="#FFFFFF"
-            style={styles.phoneIcon}
-        />
-        <Text style={styles.callButtonText}>{t('contacts.call') || 'Appeler'}</Text>
-      </TouchableOpacity>
-  );
+  const renderItemAccessory = (item: IListItem): React.ReactElement => {
+    const phoneNumber = item.tel || item.emergencyTel || item.alternativeTel || item.thirdTel || item.fourthTel;
+
+    if (!phoneNumber) {
+      return <View/>;
+    }
+
+    return (
+        <TouchableOpacity
+            style={[
+              styles.callButton,
+              {backgroundColor: theme === 'dark' ? '#4DABF7' : '#007BFF'}
+            ]}
+            onPress={() => handleEmergencyCall(phoneNumber)}
+            activeOpacity={0.8}
+        >
+          <Ionicons
+              name="call"
+              size={16}
+              color="#FFFFFF"
+              style={styles.phoneIcon}
+          />
+          <Text style={styles.callButtonText}>{t('contacts.call') || 'Appeler'}</Text>
+        </TouchableOpacity>
+    );
+  }
 
   const renderItemIcon = (category?: string): React.ReactElement => (
       <View style={styles.iconContainer}>
@@ -107,12 +157,20 @@ export const ListAppel = ({ data = [], searchText = '' }: ListAppelProps): React
       </Text>
   );
 
+  const handleContactPress = (item: IListItem) => {
+    setSelectedContact(item);
+    setIsModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+    setSelectedContact(null);
+  };
+
   const renderItem = ({ item, index }: { item: IListItem; index: number }): React.ReactElement => (
-      <ListItem
-          title={() => renderTitle(item.title)}
-          description={() => renderDescription(item.description)}
-          accessoryLeft={() => renderItemIcon(item.category)}
-          accessoryRight={() => renderItemAccessory(item.tel)}
+      <TouchableOpacity
+          onPress={() => handleContactPress(item)}
+          activeOpacity={0.7}
           style={[
             styles.listItem,
             {
@@ -120,11 +178,22 @@ export const ListAppel = ({ data = [], searchText = '' }: ListAppelProps): React
               borderColor: theme === 'dark' ? '#404040' : '#E9ECEF',
             }
           ]}
-          key={`contact-${index}-${item.tel}`}
-      />
+      >
+        <View style={styles.itemContent}>
+          <View style={styles.leftContent}>
+            {renderItemIcon(item.category)}
+            <View style={styles.textContent}>
+              {renderTitle(item.title)}
+              {renderDescription(item.description)}
+            </View>
+          </View>
+          <View style={styles.rightContent}>
+            {renderItemAccessory(item)}
+          </View>
+        </View>
+      </TouchableOpacity>
   );
 
-  // Affichage si aucune donnée
   if (!data || data.length === 0) {
     return (
         <View style={styles.emptyContainer}>
@@ -143,7 +212,6 @@ export const ListAppel = ({ data = [], searchText = '' }: ListAppelProps): React
     );
   }
 
-  // Affichage si aucun résultat de recherche
   if (filteredData.length === 0 && searchText.trim()) {
     return (
         <View style={styles.emptyContainer}>
@@ -162,18 +230,26 @@ export const ListAppel = ({ data = [], searchText = '' }: ListAppelProps): React
     );
   }
 
-  return (
-      <List
-          style={styles.container}
+  return (<>
+      <FlatList
+          style={[styles.container, { backgroundColor: theme === 'dark' ? '#1A1A1A' : '#F8F9FA' }]}
           data={filteredData}
           renderItem={renderItem}
+          keyExtractor={(item, index) => `contact-${index}-${item.id || item.tel || Math.random()}`}
+          ListHeaderComponent={ListHeaderComponent}
           contentContainerStyle={styles.contentContainer}
           showsVerticalScrollIndicator={false}
       />
+
+        <ContactModal
+            isVisible={isModalVisible}
+            contact={selectedContact}
+            onClose={closeModal}
+            />
+    </>
   );
 };
 
-// Les styles restent identiques...
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -255,5 +331,23 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontSize: 16,
     fontStyle: 'italic',
+  },
+  itemContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  leftContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  textContent: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  rightContent: {
+    marginLeft: 12,
   },
 });
