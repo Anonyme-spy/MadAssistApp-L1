@@ -2,7 +2,7 @@
   "expo": {
     "name": "MadAssistant",
     "slug": "MadAssistant",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "orientation": "portrait",
     "icon": "./assets/images/3.png",
     "scheme": "madassistant",

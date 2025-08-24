@@ -175,11 +175,11 @@ const styles = StyleSheet.create({
   tabBarContent: {
     alignItems: 'center',
     paddingHorizontal: 0,
-    gap: 0,
+    gap: 7,
   },
   customTabButton: {
     paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: 8,
     borderRadius: 20,
     borderWidth: 1,
     marginHorizontal: 4,

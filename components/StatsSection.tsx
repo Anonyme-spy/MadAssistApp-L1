@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
 
     statLabel: {
-        fontSize: 12,
+        fontSize: 10,
         fontWeight: '600',
         textTransform: 'uppercase',
         letterSpacing: 0.5,
