@@ -2,31 +2,31 @@
   "emergencyContacts": [
     {
       "id": 1,
-      "title": "Fire Department",
-      "description": "For fire emergencies and rescue operations",
+      "title": "Pompiers",
+      "description": "Pour les urgences incendie et opérations de secours.",
       "tel": "118",
       "alternativeTel": "22250018",
       "category": "fire"
     },
     {
       "id": 2,
-      "title": "National Police",
-      "description": "For police emergencies and interventions",
+      "title": "Police Nationale",
+      "description": "Pour les urgences et interventions policières.",
       "tel": "117",
       "alternativeTel": "22220017",
       "category": "security"
     },
     {
       "id": 3,
-      "title": "National Gendarmerie",
-      "description": "For gendarmerie interventions",
+      "title": "Gendarmerie Nationale",
+      "description": "Pour les interventions de la gendarmerie.",
       "tel": "119",
       "category": "security"
     },
     {
       "id": 4,
-      "title": "MAF Madagascar - Medical Evacuation",
-      "description": "Emergency medical evacuation",
+      "title": "MAF Madagascar - Évacuation Sanitaire",
+      "description": "Évacuation sanitaire d'urgence.",
       "tel": "0321165605",
       "emergencyTel": "0325718395",
       "category": "health",
@@ -34,8 +34,8 @@
     },
     {
       "id": 5,
-      "title": "Espace Medical Ambodivona",
-      "description": "24/7 medical emergencies",
+      "title": "Espace Médical Ambodivona",
+      "description": "Urgences médicales 24/7.",
       "tel": "0320208816",
       "alternativeTel": "0202262566",
       "category": "health",
@@ -43,8 +43,8 @@
     },
     {
       "id": 6,
-      "title": "MM Clinic Ampasanimalo",
-      "description": "24/7 medical emergencies",
+      "title": "Clinique MM Ampasanimalo",
+      "description": "Urgences médicales 24/7.",
       "tel": "022235555",
       "alternativeTel": "0320223555",
       "thirdTel": "0320489722",
@@ -54,24 +54,24 @@
     {
       "id": 7,
       "title": "CHU HJRA Ampefiloha",
-      "description": "University Hospital - Emergency Department",
+      "description": "Centre Hospitalier Universitaire - Service des Urgences.",
       "tel": "0331189058",
       "category": "health",
       "availability": "24/7"
     },
     {
       "id": 8,
-      "title": "French Consulate General",
-      "description": "Consular emergencies outside office hours",
+      "title": "Consulat Général de France",
+      "description": "Urgences consulaires en dehors des heures de service.",
       "tel": "0321211010",
       "alternativeTel": "0341211010",
       "category": "consular",
-      "availability": "After hours"
+      "availability": "Après les heures de bureau"
     },
     {
       "id": 9,
-      "title": "Central Police Station Antananarivo",
-      "description": "Capital city central police",
+      "title": "Commissariat Central de Police Antananarivo",
+      "description": "Police centrale de la capitale.",
       "tel": "0202022735",
       "alternativeTel": "0202022736",
       "category": "security",
@@ -80,7 +80,7 @@
     {
       "id": 10,
       "title": "Police Diego-Suarez",
-      "description": "Diego-Suarez police",
+      "description": "Police de Diego-Suarez.",
       "tel": "0340599859",
       "category": "security",
       "location": "Diego-Suarez"
@@ -88,7 +88,7 @@
     {
       "id": 11,
       "title": "Police Majunga",
-      "description": "Majunga police",
+      "description": "Police de Majunga.",
       "tel": "0206222932",
       "alternativeTel": "0340599866",
       "category": "security",
@@ -96,17 +96,17 @@
     },
     {
       "id": 12,
-      "title": "Police Tulear",
-      "description": "Tulear (Toliara) police",
+      "title": "Police Tuléar",
+      "description": "Police de Tuléar (Toliara).",
       "tel": "0340599878",
       "alternativeTel": "0340200911",
       "category": "security",
-      "location": "Tulear"
+      "location": "Tuléar"
     },
     {
       "id": 13,
       "title": "Hôpital Militaire (HOMI)",
-      "description": "Urgences et hospitalisation",
+      "description": "Urgence et hospitalisation.",
       "tel": "0331189058",
       "category": "health",
       "subcategory": "hospital",
@@ -115,7 +115,7 @@
     {
       "id": 14,
       "title": "Hôpital Joseph Ravoahangy Andrianavalona (HJRA)",
-      "description": "Hôpital public - Anosy",
+      "description": "Hôpital public - Anosy.",
       "tel": "22279779",
       "alternativeTel": "22640002",
       "category": "health",
@@ -123,8 +123,8 @@
     },
     {
       "id": 15,
-      "title": "Hôpital Befelatanana (HJRB)",
-      "description": "Hôpital public - Mahamasina",
+      "title": "Hôpital de Befelatanana (HJRB)",
+      "description": "Hôpital public - Mahamasina.",
       "tel": "22672221",
       "alternativeTel": "0341420177",
       "category": "health",
@@ -132,8 +132,8 @@
     },
     {
       "id": 16,
-      "title": "Clinique des Soeurs Ankadifotsy",
-      "description": "Clinique privée - Ankadifotsy",
+      "title": "Clinique des Sœurs Ankadifotsy",
+      "description": "Clinique privée - Ankadifotsy.",
       "tel": "22235554",
       "alternativeTel": "22695520",
       "category": "health",
@@ -142,7 +142,7 @@
     {
       "id": 17,
       "title": "Clinique Mpitsabo Mikambana (MM24)",
-      "description": "Consultations à domicile",
+      "description": "Consultations à domicile.",
       "tel": "22235555",
       "alternativeTel": "0330223555",
       "category": "health",
@@ -151,7 +151,7 @@
     {
       "id": 18,
       "title": "Médical Plus",
-      "description": "Consultations à domicile",
+      "description": "Consultations à domicile.",
       "tel": "0320460205",
       "alternativeTel": "0331161305",
       "category": "health",
@@ -160,7 +160,7 @@
     {
       "id": 19,
       "title": "Assistance Plus",
-      "description": "Consultations à domicile",
+      "description": "Consultations à domicile.",
       "tel": "22487747",
       "alternativeTel": "0320780113",
       "category": "health",
@@ -169,7 +169,7 @@
     {
       "id": 20,
       "title": "Espace Médical",
-      "description": "Consultations à domicile",
+      "description": "Consultations à domicile.",
       "tel": "22625666",
       "alternativeTel": "0340562566",
       "category": "health",
@@ -177,8 +177,8 @@
     },
     {
       "id": 21,
-      "title": "Polyclinique Ilafy",
-      "description": "Consultations à domicile",
+      "title": "Polyclinique d'Ilafy",
+      "description": "Consultations à domicile.",
       "tel": "22425666",
       "alternativeTel": "22425669",
       "thirdTel": "0320724328",
@@ -187,8 +187,8 @@
     },
     {
       "id": 22,
-      "title": "Médical Plus Ambulance",
-      "description": "Ambulance services",
+      "title": "Ambulance Médical Plus",
+      "description": "Services d'ambulance.",
       "tel": "0331161305",
       "alternativeTel": "0331128644",
       "category": "health",
@@ -197,8 +197,8 @@
     },
     {
       "id": 23,
-      "title": "Assistance Plus Ambulance",
-      "description": "Ambulance services",
+      "title": "Ambulance Assistance Plus",
+      "description": "Services d'ambulance.",
       "tel": "0320780110",
       "category": "health",
       "subcategory": "ambulance",
@@ -206,8 +206,8 @@
     },
     {
       "id": 24,
-      "title": "Espace Médical Ambulance",
-      "description": "Ambulance services",
+      "title": "Ambulance Espace Médical",
+      "description": "Services d'ambulance.",
       "tel": "22625666",
       "alternativeTel": "0340200911",
       "category": "health",
@@ -216,8 +216,8 @@
     },
     {
       "id": 25,
-      "title": "Pompiers Ambulance",
-      "description": "Fire department ambulance",
+      "title": "Ambulance des Pompiers",
+      "description": "Ambulance des sapeurs-pompiers.",
       "tel": "18",
       "alternativeTel": "118",
       "thirdTel": "22225666",
@@ -228,7 +228,7 @@
     {
       "id": 26,
       "title": "Ambulance SARO",
-      "description": "Private ambulance service",
+      "description": "Service d'ambulance privé.",
       "tel": "0340500034",
       "alternativeTel": "0340500019",
       "category": "health",
@@ -238,27 +238,27 @@
     {
       "id": 27,
       "title": "Mme Rakotomalala Aimée",
-      "description": "Kinesitherapeute",
+      "description": "Kinésithérapeute.",
       "tel": "2221427",
       "alternativeTel": "0320204955",
       "category": "health",
-      "subcategory": "kinesitherapeute",
+      "subcategory": "physiotherapist",
       "location": "Antanimena"
     },
     {
       "id": 28,
       "title": "Mme Rakotomanana Lovasoa Michèle",
-      "description": "Kinésithérapeute",
+      "description": "Kinésithérapeute.",
       "tel": "2221427",
       "alternativeTel": "0320204955",
       "category": "health",
-      "subcategory": "kinesitherapeute",
+      "subcategory": "physiotherapist",
       "location": "Analamahitsy"
     },
     {
       "id": 29,
       "title": "Dr Rasoahaingo Benja",
-      "description": "Ostéopathe",
+      "description": "Ostéopathe.",
       "tel": "0345670441",
       "alternativeTel": "0345670442",
       "category": "health",
@@ -267,8 +267,8 @@
     },
     {
       "id": 30,
-      "title": "Mr Vezo Antoine",
-      "description": "Ostéopathe",
+      "title": "M. Vezo Antoine",
+      "description": "Ostéopathe.",
       "tel": "0325199057",
       "category": "health",
       "subcategory": "osteopath",
@@ -277,7 +277,7 @@
     {
       "id": 31,
       "title": "Mme Grojat Stéphanie",
-      "description": "Podologue",
+      "description": "Podologue.",
       "tel": "0320730553",
       "category": "health",
       "subcategory": "podiatrist",
@@ -286,7 +286,7 @@
     {
       "id": 32,
       "title": "Mme Andrianilaina Koloina",
-      "description": "Psychologue",
+      "description": "Psychologue.",
       "tel": "0330746881",
       "category": "health",
       "subcategory": "psychologist",
@@ -295,7 +295,7 @@
     {
       "id": 33,
       "title": "Mme Laudat Emeline",
-      "description": "Psychologue",
+      "description": "Psychologue.",
       "tel": "0346700487",
       "category": "health",
       "subcategory": "psychologist",
@@ -304,7 +304,7 @@
     {
       "id": 34,
       "title": "Mme D'Huart Alexandra",
-      "description": "Psychologue",
+      "description": "Psychologue.",
       "tel": "0343265490",
       "category": "health",
       "subcategory": "psychologist",
@@ -313,7 +313,7 @@
     {
       "id": 35,
       "title": "Mme Louvet Dominique",
-      "description": "Orthoptiste",
+      "description": "Orthoptiste.",
       "tel": "0320713750",
       "category": "health",
       "subcategory": "orthoptist",
@@ -322,7 +322,7 @@
     {
       "id": 36,
       "title": "Mme Bouka Jamila",
-      "description": "Audioprothésiste",
+      "description": "Audioprothésiste.",
       "tel": "0321100252",
       "category": "health",
       "subcategory": "audiologist",
@@ -331,7 +331,7 @@
     {
       "id": 37,
       "title": "Dr Andriamboavonjy Honorette",
-      "description": "Ophthalmologist",
+      "description": "Ophtalmologue.",
       "tel": "0320255751",
       "alternativeTel": "2223554",
       "category": "health",
@@ -341,7 +341,7 @@
     {
       "id": 38,
       "title": "Pr Bernardin Prisca",
-      "description": "Ophtalmologue",
+      "description": "Ophtalmologue.",
       "tel": "0330225168",
       "alternativeTel": "22298844",
       "category": "health",
@@ -351,7 +351,7 @@
     {
       "id": 39,
       "title": "Dr Rakotomanga Patricia",
-      "description": "Dermatologue",
+      "description": "Dermatologue.",
       "tel": "0320770586",
       "category": "health",
       "subcategory": "dermatologist",
@@ -360,7 +360,7 @@
     {
       "id": 40,
       "title": "Pr Razafimahandry Henri Jean Claude",
-      "description": "Orthopédiste",
+      "description": "Orthopédiste.",
       "tel": "0331125185",
       "category": "health",
       "subcategory": "orthopedist",
@@ -369,7 +369,7 @@
     {
       "id": 41,
       "title": "Dr Randrianomenjanahary Jules",
-      "description": "Orthopédiste",
+      "description": "Orthopédiste.",
       "tel": "0331106199",
       "alternativeTel": "0322321717",
       "category": "health",
@@ -379,17 +379,17 @@
     {
       "id": 42,
       "title": "Dr Mamod Amine",
-      "description": "Dentiste",
+      "description": "Dentiste.",
       "tel": "0321142647",
       "alternativeTel": "22424234",
       "category": "health",
       "subcategory": "dentist",
-      "location": "Imm Assist Ivandry"
+      "location": "Immeuble Assist Ivandry"
     },
     {
       "id": 43,
       "title": "Dr Chapuis Caroline",
-      "description": "Dentiste",
+      "description": "Dentiste.",
       "tel": "0320715419",
       "alternativeTel": "0321120888",
       "category": "health",
@@ -399,7 +399,7 @@
     {
       "id": 44,
       "title": "Dr Rafalimanana Niry Sylvie",
-      "description": "Dentiste",
+      "description": "Dentiste.",
       "tel": "0325438567",
       "category": "health",
       "subcategory": "dentist",
@@ -408,7 +408,7 @@
     {
       "id": 45,
       "title": "Dr Rasolonjatovo Mamy Seth",
-      "description": "ORL",
+      "description": "ORL (Oto-rhino-laryngologiste).",
       "tel": "0342023972",
       "category": "health",
       "subcategory": "ent",
@@ -417,7 +417,7 @@
     {
       "id": 46,
       "title": "Dr Andriantsoavina Haja",
-      "description": "Gastro-entérologue",
+      "description": "Gastro-entérologue.",
       "tel": "0331103923",
       "category": "health",
       "subcategory": "gastroenterologist",
@@ -426,7 +426,7 @@
     {
       "id": 47,
       "title": "Dr Lespagne Radilofe Tania",
-      "description": "Pédiatre",
+      "description": "Pédiatre.",
       "tel": "22404443",
       "alternativeTel": "0341182029",
       "category": "health",
@@ -436,7 +436,7 @@
     {
       "id": 48,
       "title": "Dr Rakotovao Haja",
-      "description": "Rhumatologue",
+      "description": "Rhumatologue.",
       "tel": "24203552",
       "alternativeTel": "0320427307",
       "category": "health",
@@ -446,7 +446,7 @@
     {
       "id": 49,
       "title": "Institut Médical de Madagascar",
-      "description": "Radiology / Ultrasound / CT / MRI",
+      "description": "Radiologie / Échographie / Scanner / IRM.",
       "tel": "2221717",
       "alternativeTel": "0341745269",
       "category": "health",
@@ -456,7 +456,7 @@
     {
       "id": 50,
       "title": "CRDT",
-      "description": "Imagerie médicale",
+      "description": "Imagerie médicale.",
       "tel": "0331130760",
       "alternativeTel": "0341130760",
       "category": "health",
@@ -466,7 +466,7 @@
     {
       "id": 51,
       "title": "Institut Pasteur",
-      "description": "Biomedical analysis laboratories",
+      "description": "Laboratoires d'analyses biomédicales.",
       "tel": "2240164",
       "alternativeTel": "2240165",
       "thirdTel": "0320541272",
@@ -478,7 +478,7 @@
     {
       "id": 52,
       "title": "Centre Technique Biomédical",
-      "description": "Laboratoire d'analyses",
+      "description": "Laboratoire d'analyses.",
       "tel": "22450661",
       "category": "health",
       "subcategory": "lab",
@@ -487,7 +487,7 @@
     {
       "id": 53,
       "title": "Dr Andrianarivoson Luc",
-      "description": "General practitioner",
+      "description": "Médecin généraliste.",
       "tel": "0331161305",
       "category": "health",
       "subcategory": "generalist",
@@ -496,7 +496,7 @@
     {
       "id": 54,
       "title": "Dr Rasoahaingo Benja",
-      "description": "General practitioner",
+      "description": "Médecin généraliste.",
       "tel": "0345670441",
       "alternativeTel": "0345670442",
       "category": "health",
@@ -506,7 +506,7 @@
     {
       "id": 55,
       "title": "Dr Ramandimbisoa Tombo",
-      "description": "General practitioner",
+      "description": "Médecin généraliste.",
       "tel": "0320781774",
       "alternativeTel": "0342242990",
       "category": "health",
@@ -516,7 +516,7 @@
     {
       "id": 56,
       "title": "Dr Randrianaroson Bertin",
-      "description": "General practitioner",
+      "description": "Médecin généraliste.",
       "tel": "0340384739",
       "alternativeTel": "0329928669",
       "category": "health",
@@ -526,7 +526,7 @@
     {
       "id": 57,
       "title": "Dr Kaderbay Yumna",
-      "description": "General practitioner",
+      "description": "Médecin généraliste.",
       "tel": "034551444",
       "category": "health",
       "subcategory": "generalist",
@@ -535,7 +535,7 @@
     {
       "id": 58,
       "title": "Dr Ramaherison Francis",
-      "description": "Gynecologist",
+      "description": "Gynécologue.",
       "tel": "2260880",
       "category": "health",
       "subcategory": "gynecologist",
@@ -544,7 +544,7 @@
     {
       "id": 59,
       "title": "Dr Randrianasolo Hary",
-      "description": "Gynecologist",
+      "description": "Gynécologue.",
       "tel": "2260880",
       "category": "health",
       "subcategory": "gynecologist",
@@ -553,26 +553,26 @@
     {
       "id": 60,
       "title": "Dr Rakotozafy Faratiana",
-      "description": "Gynecologist",
+      "description": "Gynécologue.",
       "tel": "2266104",
       "alternativeTel": "2266393",
       "category": "health",
       "subcategory": "gynecologist",
-      "location": "Pavillon Ste Fleur"
+      "location": "Pavillon Sainte-Fleur"
     },
     {
       "id": 61,
-      "title": "Dr Grandjean (temporarily unavailable)",
-      "description": "Gynecologist",
+      "title": "Dr Grandjean (temporairement indisponible)",
+      "description": "Gynécologue.",
       "tel": "0320482225",
       "category": "health",
       "subcategory": "gynecologist",
-      "location": "Polyclinique Ilafy"
+      "location": "Polyclinique d'Ilafy"
     },
     {
       "id": 62,
       "title": "Dr Razafindrazaka Eric",
-      "description": "Cardiologist",
+      "description": "Cardiologue.",
       "tel": "2234734",
       "category": "health",
       "subcategory": "cardiologist",
@@ -581,7 +581,7 @@
     {
       "id": 63,
       "title": "Dr Ranaivoarison Perlin",
-      "description": "Cardiologist",
+      "description": "Cardiologue.",
       "tel": "0331298220",
       "category": "health",
       "subcategory": "cardiologist",
@@ -590,7 +590,7 @@
     {
       "id": 64,
       "title": "Pr Rakotoarimanana Solofo",
-      "description": "Cardiologist",
+      "description": "Cardiologue.",
       "tel": "0320704762",
       "alternativeTel": "0324539238",
       "category": "health",
@@ -600,26 +600,26 @@
     {
       "id": 65,
       "title": "Pr Rabearivony Nirina",
-      "description": "Cardiologist",
+      "description": "Cardiologue.",
       "tel": "0324038740",
       "alternativeTel": "0341420140",
       "category": "health",
       "subcategory": "cardiologist",
-      "location": "Mahamasina/Polyclinique Ilafy"
+      "location": "Mahamasina/Polyclinique d'Ilafy"
     },
     {
       "id": 66,
       "title": "Janssen Mélina",
-      "description": "Speech therapist",
+      "description": "Orthophoniste.",
       "tel": "0344957906",
       "category": "health",
-      "subcategory": "orthophonist",
+      "subcategory": "speech_therapist",
       "location": "Tana Water Front"
     },
     {
       "id": 67,
-      "title": "Soavinandriana Anosy Health Center",
-      "description": "Notoriety list facility",
+      "title": "Centre de Santé Soavinandriana Anosy",
+      "description": "Établissement de la liste de notoriété.",
       "tel": "0321104900",
       "alternativeTel": "0321105179",
       "thirdTel": "2227979",
@@ -630,8 +630,8 @@
     },
     {
       "id": 68,
-      "title": "Mahamasina Health Center",
-      "description": "Notoriety list facility",
+      "title": "Centre de Santé Mahamasina",
+      "description": "Établissement de la liste de notoriété.",
       "tel": "2267221",
       "alternativeTel": "0341420177",
       "category": "health",
@@ -641,7 +641,7 @@
     {
       "id": 69,
       "title": "Clinique Mpitsabo Mikambana (MM24)",
-      "description": "Medical consultations (+ home visits)",
+      "description": "Consultations médicales (+ visites à domicile).",
       "tel": "0346700487",
       "category": "health",
       "subcategory": "clinic",
@@ -650,7 +650,7 @@
     {
       "id": 70,
       "title": "Dr Govindjee Anante",
-      "description": "General Practitioner (Diego province)",
+      "description": "Médecin généraliste (Province de Diego).",
       "tel": "0320709805",
       "alternativeTel": "82213553",
       "category": "health",
@@ -660,7 +660,7 @@
     {
       "id": 71,
       "title": "Dr Bekesika Georgin",
-      "description": "General Practitioner (Nosy Be)",
+      "description": "Médecin généraliste (Nosy Be).",
       "tel": "0320409241",
       "alternativeTel": "8692051",
       "category": "health",
@@ -670,7 +670,7 @@
     {
       "id": 72,
       "title": "Dr Liva",
-      "description": "General Practitioner (Nosy Be)",
+      "description": "Médecin généraliste (Nosy Be).",
       "tel": "0320239774",
       "category": "health",
       "subcategory": "generalist",
@@ -678,8 +678,8 @@
     },
     {
       "id": 73,
-      "title": "Dr Andre Mireille",
-      "description": "General Practitioner (Majunga)",
+      "title": "Dr André Mireille",
+      "description": "Médecin généraliste (Majunga).",
       "tel": "0320400423",
       "category": "health",
       "subcategory": "generalist",
@@ -687,8 +687,8 @@
     },
     {
       "id": 74,
-      "title": "Dr Ratsimanohatra Gerard",
-      "description": "General Practitioner (Majunga)",
+      "title": "Dr Ratsimanohatra Gérard",
+      "description": "Médecin généraliste (Majunga).",
       "tel": "0320409699",
       "alternativeTel": "0320251487",
       "category": "health",
@@ -697,8 +697,8 @@
     },
     {
       "id": 75,
-      "title": "Dr Rafalimanana Eliane",
-      "description": "General Practitioner (Majunga)",
+      "title": "Dr Rafalimanana Éliane",
+      "description": "Médecin généraliste (Majunga).",
       "tel": "0341409699",
       "category": "health",
       "subcategory": "generalist",
@@ -707,7 +707,7 @@
     {
       "id": 76,
       "title": "Dr Ramaroson Karen",
-      "description": "General Practitioner (Majunga)",
+      "description": "Médecin généraliste (Majunga).",
       "tel": "0344158942",
       "category": "health",
       "subcategory": "generalist",
@@ -716,7 +716,7 @@
     {
       "id": 77,
       "title": "Dr Ramaroson Hervé",
-      "description": "General Practitioner (Majunga)",
+      "description": "Médecin généraliste (Majunga).",
       "tel": "0344158940",
       "category": "health",
       "subcategory": "generalist",
@@ -725,7 +725,7 @@
     {
       "id": 78,
       "title": "Dr Chan Mine Luen",
-      "description": "General Practitioner (Tamatave)",
+      "description": "Médecin généraliste (Tamatave).",
       "tel": "0320722172",
       "alternativeTel": "0341588825",
       "category": "health",
@@ -734,8 +734,8 @@
     },
     {
       "id": 79,
-      "title": "Dr Andrianavony Raharimanana Amele",
-      "description": "General Practitioner (Tamatave)",
+      "title": "Dr Andrianavony Raharimanana Amèle",
+      "description": "Médecin généraliste (Tamatave).",
       "tel": "0320272118",
       "category": "health",
       "subcategory": "generalist",
@@ -744,7 +744,7 @@
     {
       "id": 80,
       "title": "Dr Akbaraly Tasmine",
-      "description": "General Practitioner (Tamatave)",
+      "description": "Médecin généraliste (Tamatave).",
       "tel": "0333702635",
       "category": "health",
       "subcategory": "generalist",
@@ -753,34 +753,34 @@
     {
       "id": 81,
       "title": "Dr Emasignavy Henrielle",
-      "description": "General Practitioner (Sainte Marie)",
+      "description": "Médecin généraliste (Sainte-Marie).",
       "tel": "0340852246",
       "category": "health",
       "subcategory": "generalist",
-      "location": "Sainte Marie"
+      "location": "Sainte-Marie"
     },
     {
       "id": 82,
       "title": "Dr Rasolonjatovo Rajaonah",
-      "description": "General Practitioner (Tulear)",
+      "description": "Médecin généraliste (Tuléar).",
       "tel": "0320443833",
       "category": "health",
       "subcategory": "generalist",
-      "location": "Tulear"
+      "location": "Tuléar"
     },
     {
       "id": 83,
       "title": "Dr Rakotozafy Lova Beroz",
-      "description": "Dentist (Tulear)",
+      "description": "Dentiste (Tuléar).",
       "tel": "0327092340",
       "category": "health",
       "subcategory": "dentist",
-      "location": "Tulear"
+      "location": "Tuléar"
     },
     {
       "id": 84,
       "title": "Dr Solange Marianne",
-      "description": "General Practitioner (Fianarantsoa)",
+      "description": "Médecin généraliste (Fianarantsoa).",
       "tel": "0320225885",
       "alternativeTel": "75505560",
       "category": "health",
@@ -790,7 +790,7 @@
     {
       "id": 85,
       "title": "Dr Rakotoniaina Maminirina Daniel",
-      "description": "General Practitioner (Fianarantsoa)",
+      "description": "Médecin généraliste (Fianarantsoa).",
       "tel": "0343152821",
       "alternativeTel": "0320259505",
       "category": "health",
@@ -800,7 +800,7 @@
     {
       "id": 86,
       "title": "Dr Randrianasolo Tahiry",
-      "description": "General Practitioner (Antsirabe)",
+      "description": "Médecin généraliste (Antsirabe).",
       "tel": "44497006",
       "alternativeTel": "0340193813",
       "category": "health",
@@ -810,7 +810,7 @@
     {
       "id": 87,
       "title": "Dr Zafindrianompy Patrice",
-      "description": "General Practitioner (Antsohihy)",
+      "description": "Médecin généraliste (Antsohihy).",
       "tel": "0320231770",
       "category": "health",
       "subcategory": "generalist",
@@ -819,35 +819,35 @@
     {
       "id": 88,
       "title": "Dr Ranaivosoa Rolland",
-      "description": "General Practitioner (Fort Dauphin)",
+      "description": "Médecin généraliste (Fort-Dauphin).",
       "tel": "0331251772",
       "category": "health",
       "subcategory": "generalist",
-      "location": "Fort Dauphin"
+      "location": "Fort-Dauphin"
     },
     {
       "id": 89,
       "title": "Dr Olivier Jane",
-      "description": "General Practitioner (Fort Dauphin)",
+      "description": "Médecin généraliste (Fort-Dauphin).",
       "tel": "0347497034",
       "category": "health",
       "subcategory": "generalist",
-      "location": "Fort Dauphin"
+      "location": "Fort-Dauphin"
     },
     {
       "id": 90,
       "title": "Dr Randrianjafisoa Hrivola Patric",
-      "description": "General Practitioner (Fort Dauphin)",
+      "description": "Médecin généraliste (Fort-Dauphin).",
       "tel": "0324519545",
       "alternativeTel": "0340519545",
       "category": "health",
       "subcategory": "generalist",
-      "location": "Fort Dauphin"
+      "location": "Fort-Dauphin"
     },
     {
       "id": 91,
       "title": "Dr Bemasy Alain",
-      "description": "General Practitioner (Mananjary)",
+      "description": "Médecin généraliste (Mananjary).",
       "tel": "0344030008",
       "category": "health",
       "subcategory": "generalist",
@@ -856,7 +856,7 @@
     {
       "id": 92,
       "title": "Dr Rahalijaona Andriakotoniaina",
-      "description": "General Practitioner (Vohipeno)",
+      "description": "Médecin généraliste (Vohipeno).",
       "tel": "0341331273",
       "category": "health",
       "subcategory": "generalist",
@@ -865,7 +865,7 @@
     {
       "id": 93,
       "title": "Dr Randriamanampionona Samuel",
-      "description": "General Practitioner (Sambava)",
+      "description": "Médecin généraliste (Sambava).",
       "tel": "0324196036",
       "category": "health",
       "subcategory": "generalist",
@@ -874,98 +874,98 @@
     {
       "id": 94,
       "title": "MGEN",
-      "description": "Repatriation insurance",
+      "description": "Assurance rapatriement.",
       "tel": "+33 05 49 76 66 76",
       "category": "insurance"
     },
     {
       "id": 95,
       "title": "Europe Assistance",
-      "description": "Repatriation insurance",
+      "description": "Assurance rapatriement.",
       "tel": "+33 01 41 85 85 85",
       "category": "insurance"
     },
     {
       "id": 96,
-      "title": "Inter Mutuelle Assistance",
-      "description": "Repatriation insurance",
+      "title": "Inter Mutuelles Assistance",
+      "description": "Assurance rapatriement.",
       "tel": "+33 05 49 75 75 75",
       "category": "insurance"
     },
     {
       "id": 97,
       "title": "Axa Assistance",
-      "description": "Repatriation insurance",
+      "description": "Assurance rapatriement.",
       "tel": "+33 01 55 92 27 26",
       "category": "insurance"
     },
     {
       "id": 98,
       "title": "Mondial Assistance",
-      "description": "Repatriation insurance",
+      "description": "Assurance rapatriement.",
       "tel": "+33 01 40 25 52 55",
       "category": "insurance"
     },
     {
       "id": 99,
       "title": "Mutuelle Assistance Internationale (MAE)",
-      "description": "Repatriation insurance",
+      "description": "Assurance rapatriement.",
       "tel": "+33 05 49 34 80 49",
       "category": "insurance"
     },
     {
       "id": 100,
-      "title": "Carte Bleu Visa",
-      "description": "Repatriation insurance",
+      "title": "Carte Bleue Visa",
+      "description": "Assurance rapatriement.",
       "tel": "+33 01 41 85 88 81",
       "category": "insurance"
     },
     {
       "id": 101,
       "title": "Mastercard",
-      "description": "Repatriation insurance",
+      "description": "Assurance rapatriement.",
       "tel": "+33 01 45 16 65 65",
       "category": "insurance"
     },
     {
       "id": 102,
-      "title": "Master card",
-      "description": "Repatriation insurance",
+      "title": "Master Card",
+      "description": "Assurance rapatriement.",
       "tel": "+33 01 45 16 24 24",
       "category": "insurance"
     },
     {
       "id": 103,
-      "title": "Mondial assistance Réunion",
-      "description": "Repatriation insurance",
+      "title": "Mondial Assistance Réunion",
+      "description": "Assurance rapatriement.",
       "tel": "+262 262 90 99 95",
       "category": "insurance"
     },
     {
       "id": 104,
       "title": "Gold MasterCard",
-      "description": "Repatriation insurance",
+      "description": "Assurance rapatriement.",
       "tel": "+33 01 56 58 12 12",
       "category": "insurance"
     },
     {
       "id": 105,
       "title": "Océan Indien Assistance (OIA)",
-      "description": "Repatriation insurance",
+      "description": "Assurance rapatriement.",
       "tel": "+262 262 97 50 30",
       "category": "insurance"
     },
     {
       "id": 106,
       "title": "Assistance Plus",
-      "description": "Local assistance",
+      "description": "Assistance locale.",
       "tel": "0320780110",
       "category": "insurance"
     },
     {
       "id": 107,
       "title": "MadAssistant",
-      "description": "Les créateurs de MadAssistant, Développeurs de cette application, présent pour vous assister",
+      "description": "Les créateurs de MadAssistant, développeurs de cette application, présents pour vous assister.",
       "tel": "0323572473",
       "alternativeTel": "0388215192",
       "emergencyTel": "0387074704",
@@ -974,7 +974,7 @@
     {
       "id": 108,
       "title": "Consulat Général de France - Secrétariat CMS",
-      "description": "General information (Mon-Thu 7:00-12:30 & 13:15-16:00, Fri 7:00-12:30)",
+      "description": "Informations générales (Lun-Jeu 7h00-12h30 et 13h15-16h00, Ven 7h00-12h30).",
       "tel": "0202223662",
       "email": "cms.tananarive@gmail.com",
       "category": "consular"
@@ -982,14 +982,14 @@
     {
       "id": 109,
       "title": "Centre Médico-Social",
-      "description": "CMS opening hours Mon-Thu 7:00-12:45 & 13:15-16:30, Fri 7:00-13:00",
+      "description": "Heures d'ouverture CMS (Lun-Jeu 7h00-12h45 et 13h15-16h30, Ven 7h00-13h00).",
       "location": "Villa Eliane Michel, rue Rabearivelo Antsahavola",
       "category": "consular"
     },
     {
       "id": 110,
-      "title": "French Consulate General – CMS Secretariat",
-      "description": "General info (Mon–Thu 7:00–12:30 & 13:15–16:00; Fri 7:00–12:30)",
+      "title": "Consulat Général de France – Secrétariat CMS",
+      "description": "Informations générales (Lun–Jeu 7h00–12h30 et 13h15–16h00 ; Ven 7h00–12h30).",
       "tel": "0202223662",
       "alternativeTel": "0202443833",
       "thirdTel": "0327092340",
@@ -997,8 +997,8 @@
     },
     {
       "id": 111,
-      "title": "Centre Médico-Social (Dr Mounoury & Dr Randrianarison)",
-      "description": "CMS (Mon–Thu 7:00–12:45 & 13:15–16:30; Fri 7:00–13:00)",
+      "title": "Centre Médico-Social (Dr Mounoury et Dr Randrianarison)",
+      "description": "CMS (Lun–Jeu 7h00–12h45 et 13h15–16h30 ; Ven 7h00–13h00).",
       "tel": "0320709805",
       "alternativeTel": "8221353",
       "thirdTel": "0340852246",

@@ -34,7 +34,27 @@ export default function TabLayout() {
       {/* Onglet d'accueil - MadAssistant */}
 
       {/* Onglet des contacts d'urgence */}
-      <Tabs.Screen
+        <Tabs.Screen
+            name="index"
+            options={{
+                title: t('tabs.home'),
+                // Icône de maison pour l'onglet d'accueil
+                tabBarIcon: ({ color }) => (
+                    <Image
+                        source={require('@/assets/icons/ISPM-removebg-preview2.png')}
+                        style={{ width: 28, height: 28 }}
+                    />
+                ),
+                headerRight: () => (
+                    <Image
+                        source={require('@/assets/icons/ISPM-removebg-preview2.png')}
+                        style={{ width: 28, height: 28, marginRight: 15 }}
+                    />
+
+                )
+            }}
+        />
+        <Tabs.Screen
         name="contact"
 
         options={{
@@ -42,26 +62,6 @@ export default function TabLayout() {
           headerTitleAlign: 'center',
           // Icône de téléphone pour l'onglet des contacts
           tabBarIcon: ({ color }) => <TabBarIcon name="phone" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: t('tabs.home'),
-          // Icône de maison pour l'onglet d'accueil
-          tabBarIcon: ({ color }) => (
-            <Image
-              source={require('@/assets/icons/ISPM-removebg-preview2.png')}
-              style={{ width: 28, height: 28 }}
-            />
-          ),
-          headerRight: () => (
-                  <Image
-                    source={require('@/assets/icons/ISPM-removebg-preview2.png')}
-                    style={{ width: 28, height: 28, marginRight: 15 }}
-                  />
-
-          )
         }}
       />
       <Tabs.Screen
